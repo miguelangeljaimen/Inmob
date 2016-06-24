@@ -1,0 +1,79 @@
+
+ 
+<?php $__env->startSection('content'); ?>
+<div class="container">
+	<div class="row">
+		<div class="col-md-10 col-md-offset-1">
+			<div class="panel panel-default">
+				<div class="panel-heading">Busqueda</div>
+ 
+				<div class="panel-body">
+					<?php echo Form::open(); ?>
+
+
+                        <div class="form-group">
+	                        <div class="col-md-4">	
+	                            <label>Tipo</label>
+	                            <?php echo Form::select('size', array('1' => 'venta', '2' => 'Arriendo'), null, array('class'=>'form-control','style'=>'' )); ?>
+
+	                        </div>
+	                         <div class="col-md-4">	
+	                            <label>Región</label>
+	                            <?php echo Form::select ('region', $regiones, 0 , ['class'=>'form-control','style'=>'']); ?>
+
+	                        </div>
+	                         <div class="col-md-4">	
+	                            <label>Comuna</label>
+	                               <?php echo Form::select ('comuna', $comunas, 0 , ['class'=>'form-control','style'=>'']); ?>
+
+	                        </div>     
+
+                        </div>
+                      
+                    <?php echo Form::close(); ?>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-md-10 col-md-offset-1">
+			<div class="panel panel-default">
+				<div class="panel-heading">Resultados</div>
+ 
+				<div class="panel-body">
+					<div class="col-md-4">
+						<div class="col-md-6">
+							<?php echo Html::image('assets/img/img.gif','alt',array( 'width' => 100 )); ?>
+
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="col-md-6">
+							<?php echo Html::image('assets/img/img.gif','alt',array( 'width' => 100 )); ?>
+
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="col-md-6">
+							<?php echo Html::image('assets/img/img.gif','alt',array( 'width' => 100 )); ?>
+
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="col-md-6">
+							<?php echo Html::image('assets/img/img.gif','alt',array( 'width' => 100 )); ?>
+
+						</div>
+					</div>
+					
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
