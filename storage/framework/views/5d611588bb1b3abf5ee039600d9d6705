@@ -54,7 +54,12 @@
 	<?php echo $__env->yieldContent('content'); ?>
  
 	<!-- Scripts -->
+	<?php echo Html::script('assets/js/jquery-2.1.4.js'); ?>
+
 	<?php echo Html::script('assets/js/bootstrap.min.js'); ?>
+
+	<?php echo Html::script('assets/js/utilidades.js'); ?>
+
 
 </body>
 </html>

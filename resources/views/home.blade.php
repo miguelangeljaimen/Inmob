@@ -15,13 +15,18 @@
 	                            <label>Tipo</label>
 	                            {!! Form::select('size', array('1' => 'venta', '2' => 'Arriendo'), null, array('class'=>'form-control','style'=>'' )) !!}
 	                        </div>
+
 	                         <div class="col-md-4">	
 	                            <label>Región</label>
-	                            {!! Form::select ('region', $regiones, 0 , ['class'=>'form-control','style'=>''])!!}
+	                            {!! Form::select ('region', $regiones, 0 , ['class'=>'form-control','style'=>'','id'=>'region', 'placeholder' =>'escoja una region'])!!}
+	                        </div>
+	                         <div class="col-md-4">	
+	                            <label>Provincia</label>
+	                            {!! Form::select ('provincia', $provincias, 0 , ['class'=>'form-control','style'=>'','id'=>'provincia'])!!}
 	                        </div>
 	                         <div class="col-md-4">	
 	                            <label>Comuna</label>
-	                               {!! Form::select ('comuna', $comunas, 0 , ['class'=>'form-control','style'=>''])!!}
+	                               {!! Form::select ('comuna', $comunas, 0 , ['class'=>'form-control','style'=>'','id'=>'comuna'])!!}
 	                        </div>     
 
                         </div>

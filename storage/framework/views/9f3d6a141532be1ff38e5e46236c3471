@@ -17,14 +17,20 @@
 	                            <?php echo Form::select('size', array('1' => 'venta', '2' => 'Arriendo'), null, array('class'=>'form-control','style'=>'' )); ?>
 
 	                        </div>
+
 	                         <div class="col-md-4">	
 	                            <label>Región</label>
-	                            <?php echo Form::select ('region', $regiones, 0 , ['class'=>'form-control','style'=>'']); ?>
+	                            <?php echo Form::select ('region', $regiones, 0 , ['class'=>'form-control','style'=>'','id'=>'region', 'placeholder' =>'escoja una region']); ?>
+
+	                        </div>
+	                         <div class="col-md-4">	
+	                            <label>Provincia</label>
+	                            <?php echo Form::select ('provincia', $provincias, 0 , ['class'=>'form-control','style'=>'','id'=>'provincia']); ?>
 
 	                        </div>
 	                         <div class="col-md-4">	
 	                            <label>Comuna</label>
-	                               <?php echo Form::select ('comuna', $comunas, 0 , ['class'=>'form-control','style'=>'']); ?>
+	                               <?php echo Form::select ('comuna', $comunas, 0 , ['class'=>'form-control','style'=>'','id'=>'comuna']); ?>
 
 	                        </div>     
 
