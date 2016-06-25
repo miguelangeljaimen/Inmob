@@ -22,11 +22,11 @@
 	                        </div>
 	                         <div class="col-md-4">	
 	                            <label>Provincia</label>
-	                            {!! Form::select ('provincia', $provincias, 0 , ['class'=>'form-control','style'=>'','id'=>'provincia'])!!}
+	                            {!! Form::select ('provincia', ['placeholder'=>'seleccion'], null, ['id'=>'provincia', 'class'=>'form-control'])!!}
 	                        </div>
 	                         <div class="col-md-4">	
 	                            <label>Comuna</label>
-	                               {!! Form::select ('comuna', $comunas, 0 , ['class'=>'form-control','style'=>'','id'=>'comuna'])!!}
+	                                {!! Form::select ('comuna', ['placeholder'=>'seleccion'], null, ['id'=>'comuna', 'class'=>'form-control'])!!}
 	                        </div>     
 
                         </div>

@@ -32,6 +32,14 @@ class HomeController extends Controller
 
     }
 
+    public function getComunas(Request $request, $id){
+        if ($request->ajax()) {
+            $comunas = Comuna::comunas($id);
+            return response()->json($comunas);
+        }
+
+    }
+
 
      public function login()
     {

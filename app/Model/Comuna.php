@@ -10,7 +10,7 @@ class Comuna extends Model
     public $primaryKey = 'id_comuna';
     public $timestamps = 'false';
 
-    //public static function comunas ($id){
-    	//return Comuna::where('id_provincia','=',$id)->get();
-    //}
+    public static function comunas($id){
+    	return Comuna::where('id_provincia','=',$id)->get();
+    }
 }

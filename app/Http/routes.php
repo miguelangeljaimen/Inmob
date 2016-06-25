@@ -29,4 +29,6 @@ Route::get('auth/logout', ['as' => 'auth/logout', 'uses' => 'Auth\AuthController
 Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', ['as' => 'auth/register', 'uses' => 'Auth\AuthController@postRegister']);
 
+// Select routes...
 Route::get('provincias/{id}', 'HomeController@getProvincias');
+Route::get('comunas/{id}', 'HomeController@getComunas');
