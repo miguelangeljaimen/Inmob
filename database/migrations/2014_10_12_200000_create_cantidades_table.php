@@ -13,8 +13,8 @@ class CreateCantidadesTable extends Migration
     public function up()
     {
         Schema::create('cantidades', function (Blueprint $table) {
-            $table->increments('id_cantidad');
-            $table->string('nombre_cantidad');
+            $table->increments('id');
+            $table->string('nombre');
         });
     }
 

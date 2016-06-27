@@ -18,23 +18,23 @@ class CreatePropiedadesTable extends Migration
             $table->integer('id_cliente')->unsigned();
             $table->foreign('id_cliente')->references('id_cliente')->on('clientes');
 
-            $table->integer('id_region')->length(2)->unsigned();
-            $table->foreign('id_region')->references('id_region')->on('region');
+            $table->integer('id_region');
+            $table->foreign('id_region')->references('id')->on('regiones');
             
-            $table->integer('id_provincia')->unsigned();
-            $table->foreign('id_provincia')->references('id_provincia')->on('provincia');
+            $table->integer('id_provincia');
+            $table->foreign('id_provincia')->references('id')->on('provincias');
             
-            $table->integer('id_comuna')->unsigned();
-            $table->foreign('id_comuna')->references('id_comuna')->on('comuna');
+            $table->integer('id_comuna');
+            $table->foreign('id_comuna')->references('id')->on('comunas');
             
             $table->integer('id_categoria')->unsigned();
-            $table->foreign('id_categoria')->references('id_categoria')->on('categorias');
+            $table->foreign('id_categoria')->references('id')->on('categorias');
             
-            $table->integer('bagnos')->nullable();
-            $table->foreign('id_cantidad')->references('id_cantidad')->on('cantidades');
+            $table->integer('bagnos')->unsigned()->nullable();
+            $table->foreign('bagnos')->references('id')->on('cantidades');
             
-            $table->integer('dormitorios')->nullable();
-            $table->foreign('id_cantidad')->references('id_cantidad')->on('cantidades');
+            $table->integer('dormitorios')->unsigned()->nullable();
+            $table->foreign('dormitorios')->references('id')->on('cantidades');
             
             $table->enum('bodega', ['SI', 'NO'])->default('NO')->nullable();
             

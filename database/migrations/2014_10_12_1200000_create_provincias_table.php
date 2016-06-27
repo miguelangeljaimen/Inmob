@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCategoriasTable extends Migration
+class CreateProvinciasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,14 @@ class CreateCategoriasTable extends Migration
      */
     public function up()
     {
-        Schema::create('categorias', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('provincias', function (Blueprint $table) {
+            $table->integer('id');
+            $table->primary('id');
             $table->string('nombre');
-            $table->string('alias');
+            $table->integer('id_region');
+            $table->foreign('id_region')->references('id')->on('regiones');
         });
+
     }
 
     /**
@@ -26,6 +29,6 @@ class CreateCategoriasTable extends Migration
      */
     public function down()
     {
-        Schema::drop('categorias');
+        Schema::drop('provincias');
     }
 }
