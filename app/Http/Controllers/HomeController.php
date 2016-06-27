@@ -14,7 +14,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-    	$regiones = Region::lists('nombre_region', 'id_region');
+    	$regiones = Region::lists('nombre_region', 'id_region');//aqui ingrso en primer lugar lo que quiero que muestre el select y luego el valur o lo que quiero que sea enviado por el select.
         $provincias = Provincia::lists('nombre_provincia', 'id_provincia');
         $comunas = Comuna::lists('nombre_comuna', 'id_comuna');
 
