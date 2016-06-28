@@ -1,16 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Model\Cantidad;
 
-
-
-class PropiedadesController extends Controller
+class PropiedadController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,8 +16,7 @@ class PropiedadesController extends Controller
      */
     public function index()
     {
-
-        return view('propiedades.cantidades.index');
+        return view('admin.propiedades.index');
     }
 
     /**
@@ -30,8 +26,7 @@ class PropiedadesController extends Controller
      */
     public function create()
     {
-      
-       return view('propiedades.cantidades.create');
+        return view('admin.propiedades.create');
     }
 
     /**
@@ -41,11 +36,8 @@ class PropiedadesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {     
-       return Cantidad::create([
-            'nombre_cantidad' => "prueba"
-        ]);
-       dd($request['nombre']);
+    {
+        return "aqui estamos creando propiedades";
     }
 
     /**

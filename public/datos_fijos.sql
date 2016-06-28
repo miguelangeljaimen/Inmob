@@ -434,7 +434,7 @@ INSERT INTO `cantidades` (`id`, `nombre`) VALUES
 
 INSERT INTO `categorias` (`id`, `nombre`, `alias`) VALUES
 (0,'casa_habitacional','CH'),
-(0,'casa_comercias','CC'),
+(0,'casa_comercial','CC'),
 (0,'dpto_habitacional','DH'),
 (0,'dpto_comercial','DC'),
 (0,'terreno_habitacional','TH'),

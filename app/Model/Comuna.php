@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comuna extends Model
 {
-    protected $table = 'comuna';
-    public $primaryKey = 'id_comuna';
+    protected $table = 'comunas';
+    public $primaryKey = 'id';
     public $timestamps = 'false';
 
     public static function comunas($id){

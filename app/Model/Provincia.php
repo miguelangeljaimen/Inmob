@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Provincia extends Model
 {
-    protected $table = 'provincia';
-    public $primaryKey = 'id_provincia';
+    protected $table = 'provincias';
+    public $primaryKey = 'id';
     public $timestamps = 'false';
 
     public static function provincias($id){

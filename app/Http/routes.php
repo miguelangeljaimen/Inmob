@@ -33,7 +33,8 @@ Route::post('auth/register', ['as' => 'auth/register', 'uses' => 'Auth\AuthContr
 Route::get('provincias/{id}', 'HomeController@getProvincias');
 Route::get('comunas/{id}', 'HomeController@getComunas');
 
-// Propiedades routes...
-Route::resource('propiedades/cantidades', 'PropiedadesController');
+// Admin routes...
+Route::resource('admin/clientes', 'Admin\ClienteController');
+Route::resource('admin/propiedades', 'Admin\PropiedadController');
 
 //Route::resource('propiedades/cantidades','PropiedadesController@index');
