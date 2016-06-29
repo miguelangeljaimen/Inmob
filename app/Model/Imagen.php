@@ -4,16 +4,15 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Categoria extends Model
+class Imagen extends Model
 {
-    protected $table = 'categorias';
+     protected $table = 'imagenes';
     public $primaryKey = 'id';
-   	public $timestamps = false;
-    protected $fillable = [
+
+        protected $fillable = [
     	'nombre',
-    	'alias'
-    ];
+    	'id_propiedad'
+    	];
 
     protected $hidden = ['id'];
 }
-

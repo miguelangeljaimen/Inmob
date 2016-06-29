@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Model\Cliente;
+use App\Model\Region;
 
 class ClienteController extends Controller
 {
@@ -17,7 +18,8 @@ class ClienteController extends Controller
      */
     public function index()
     {
-       return view('admin.clientes.index');
+        $clientes = Cliente::orderBy('id_cliente', 'desc')->paginate(10);
+        return view('admin.clientes.index')->with('clientes',$clientes);
     }
 
     /**

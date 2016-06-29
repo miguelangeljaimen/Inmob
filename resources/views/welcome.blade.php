@@ -39,7 +39,11 @@
         <div class="container">
             <div class="content">
                 <div class="title">Laravel 5</div>
+                @include('templates.partials.chile')
             </div>
         </div>
     </body>
+    {!! Html::script('assets/js/jquery-2.1.4.js') !!}
+    {!! Html::script('assets/js/bootstrap.min.js') !!}
+    {!! Html::script('assets/js/utilidades.js') !!}
 </html>

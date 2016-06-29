@@ -39,7 +39,14 @@
         <div class="container">
             <div class="content">
                 <div class="title">Laravel 5</div>
+                <?php echo $__env->make('templates.partials.chile', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
             </div>
         </div>
     </body>
+    <?php echo Html::script('assets/js/jquery-2.1.4.js'); ?>
+
+    <?php echo Html::script('assets/js/bootstrap.min.js'); ?>
+
+    <?php echo Html::script('assets/js/utilidades.js'); ?>
+
 </html>

@@ -30,11 +30,17 @@ Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', ['as' => 'auth/register', 'uses' => 'Auth\AuthController@postRegister']);
 
 // Select routes...
-Route::get('provincias/{id}', 'HomeController@getProvincias');
-Route::get('comunas/{id}', 'HomeController@getComunas');
+//Route::get('provincias/{id}', 'HomeController@getProvincias');
+//Route::get('comunas/{id}', 'HomeController@getComunas');
+Route::get('provincias/{id}', 'Admin\PropiedadController@getProvincias');
+Route::get('comunas/{id}', 'Admin\PropiedadController@getComunas');
+Route::get('admin/propiedades/provincias/{id}', 'Admin\PropiedadController@getProvincias');
+Route::get('admin/propiedades/comunas/{id}', 'Admin\PropiedadController@getComunas');
 
 // Admin routes...
 Route::resource('admin/clientes', 'Admin\ClienteController');
 Route::resource('admin/propiedades', 'Admin\PropiedadController');
+
+Route::get('prueba','HomeController@inde');
 
 //Route::resource('propiedades/cantidades','PropiedadesController@index');

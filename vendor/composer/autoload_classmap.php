@@ -6,12 +6,16 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'CreateCantidadesTable' => $baseDir . '/database/migrations/2_create_cantidades_table.php',
-    'CreateCategoriasTable' => $baseDir . '/database/migrations/3_create_categorias_table.php',
-    'CreateClientesTable' => $baseDir . '/database/migrations/4_create_clientes_table.php',
-    'CreatePasswordResetsTable' => $baseDir . '/database/migrations/1_create_password_resets_table.php',
-    'CreatePropiedadesTable' => $baseDir . '/database/migrations/5_create_propiedades_table.php',
-    'CreateUsersTable' => $baseDir . '/database/migrations/0_create_users_table.php',
+    'CreateCantidadesTable' => $baseDir . '/database/migrations/2014_10_12_200000_create_cantidades_table.php',
+    'CreateCategoriasTable' => $baseDir . '/database/migrations/2014_10_12_300000_create_categorias_table.php',
+    'CreateClientesTable' => $baseDir . '/database/migrations/2014_10_12_400000_create_clientes_table.php',
+    'CreateComunasTable' => $baseDir . '/database/migrations/2014_10_12_1300000_create_comunas_table.php',
+    'CreateImagensTable' => $baseDir . '/database/migrations/2016_06_29_040136_create_imagens_table.php',
+    'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
+    'CreatePropiedadesTable' => $baseDir . '/database/migrations/2014_10_12_500000_create_propiedades_table.php',
+    'CreateProvinciasTable' => $baseDir . '/database/migrations/2014_10_12_1200000_create_provincias_table.php',
+    'CreateRegionesTable' => $baseDir . '/database/migrations/2014_10_12_1100000_create_regiones_table.php',
+    'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',
     'File_Iterator_Facade' => $vendorDir . '/phpunit/php-file-iterator/src/Facade.php',
