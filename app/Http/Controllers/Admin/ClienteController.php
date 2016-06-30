@@ -69,7 +69,7 @@ class ClienteController extends Controller
      */
     public function edit($id)
     {
-        //
+    
     }
 
     /**
@@ -92,6 +92,6 @@ class ClienteController extends Controller
      */
     public function destroy($id)
     {
-        //
+       return view('admin.clientes.destroy');
     }
 }

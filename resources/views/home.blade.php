@@ -53,7 +53,7 @@
 							{!! Html::image('assets/img/img.gif','alt',array( 'width' => 100 )) !!}
 						</div>
 					</div>
-					
+
 					
 				</div>
 			</div>

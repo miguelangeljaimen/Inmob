@@ -39,6 +39,8 @@ Route::get('admin/propiedades/comunas/{id}', 'Admin\PropiedadController@getComun
 
 // Admin routes...
 Route::resource('admin/clientes', 'Admin\ClienteController');
+Route::get('admin/clientes/{id}/destroy',['uses'=>'ClienteController@destroy', 'as' => 'admin.clientes.destroy']);
+
 Route::resource('admin/propiedades', 'Admin\PropiedadController');
 
 Route::get('prueba','HomeController@inde');

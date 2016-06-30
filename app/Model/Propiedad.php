@@ -19,9 +19,7 @@ class Propiedad extends Model
     'dormitorios', 
     'bodega', 
     'agua', 
-    'luz', 
-    'valor_uf', 
-    'valor_cl'
+    'luz'
     ];
 
     protected $hidden = ['id_propiedad'];

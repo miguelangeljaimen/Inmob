@@ -1,0 +1,39 @@
+<?php $__env->startSection('content'); ?>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Cliente</div>
+                    <div class="panel-body">
+                        <table class="table table-striped">
+                            <thead>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Correo</th>
+                                <th>Fono</th>
+                                <th>Acciones</th>
+                            </thead>
+                            <tbody>
+                                <?php foreach($clientes as $cliente): ?>
+                                    <tr>
+                                        <td><?php echo e($cliente->id_cliente); ?></td>
+                                        <td><?php echo e($cliente->nombre_cliente); ?></td>
+                                        <td><?php echo e($cliente->email_cliente); ?></td>
+                                        <td><?php echo e($cliente->fono_cliente); ?></td>
+                                       <td><a href="" class="btn btn-success btn-xs">Propiedades</a> <a href="" class="btn btn-danger btn-xs">Editar</a> <a href="<?php echo e(route('admin.clientes.destroy', $cliente->nombre_cliente)); ?>" class="btn btn-danger btn-xs">Eliminar</a></td>
+                                    </tr>
+                                <?php endforeach; ?> 
+                            </tbody>
+                        </table>
+                        <?php echo $clientes->render();; ?>
+
+                        <li><a href="<?php echo e(route('admin.clientes.create')); ?>">Crear</a></li>
+                        
+                        <span class="glyphicon glyphicon-camera" aria-hidden="true"></span>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

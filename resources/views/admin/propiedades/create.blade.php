@@ -35,11 +35,11 @@
                             </div>  
                             <div class="col-md-4"> 
                             <label>Agua</label>
-                                {!! Form::select('bodega', array('1' => 'SI', '2' => 'NO'), 'NO', array('class'=>'form-control','style'=>'' )) !!}
+                                {!! Form::select('agua', array('1' => 'SI', '2' => 'NO'), 'NO', array('class'=>'form-control','style'=>'' )) !!}
                             </div>  
                             <div class="col-md-4"> 
                             <label>Luz</label>
-                                {!! Form::select('bodega', array('1' => 'SI', '2' => 'NO'), 'NO', array('class'=>'form-control','style'=>'' )) !!}
+                                {!! Form::select('luz', array('1' => 'SI', '2' => 'NO'), 'NO', array('class'=>'form-control','style'=>'' )) !!}
                             </div>  
 
                             <div class="col-md-4">

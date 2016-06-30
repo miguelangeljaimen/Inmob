@@ -21,7 +21,7 @@
                                         <td>{{$cliente->nombre_cliente}}</td>
                                         <td>{{$cliente->email_cliente}}</td>
                                         <td>{{$cliente->fono_cliente}}</td>
-                                        <td><a href="" class="btn btn-info">Propiedades</a> <a href="" class="btn btn-danger">Editar</a> <a href="" class="btn btn-danger">Eliminar</a></td>
+                                       <td><a href="" class="btn btn-success btn-xs">Propiedades</a> <a href="" class="btn btn-danger btn-xs">Editar</a> <a href="{{route('admin.clientes.destroy', $cliente->nombre_cliente)}}" class="btn btn-danger btn-xs">Eliminar</a></td>
                                     </tr>
                                 @endforeach 
                             </tbody>

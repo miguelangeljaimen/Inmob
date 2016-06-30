@@ -60,7 +60,7 @@
 
 						</div>
 					</div>
-					
+					<li><a href="<?php echo e(route('admin.clientes.index')); ?>">Clientes</a></li>
 					
 				</div>
 			</div>

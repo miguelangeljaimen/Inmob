@@ -23,8 +23,9 @@ class PropiedadController extends Controller
      */
     public function index()
     {
-        
-        return view('admin.propiedades.index');
+         $propiedades = Propiedad::orderBy('id_propiedad', 'desc')->paginate(10);
+        return view('admin.propiedades.index')->with('propiedades',$propiedades);
+        //return view('admin.propiedades.index');
     }
 
     /** fin index*/
@@ -71,27 +72,26 @@ class PropiedadController extends Controller
      */
     public function store(Request $request)
     {
-        /*return Propiedad::create([
+         Propiedad::create([
             'id_cliente'=> $request['cliente'], 
             'id_region'=> $request['region'], 
-            'id_provincia'=> $request['prpovincia'], 
+            'id_provincia'=> $request['provincia'], 
             'id_comuna'=> $request['comuna'], 
             'id_categoria'=> $request['categoria'], 
             'bagnos'=> $request['bagnos'], 
             'dormitorios'=> $request['dormitorios'], 
             'bodega'=> $request['bodega'], 
             'agua'=> $request['agua'], 
-            'luz'=> $request['luz'], 
-            'valor_uf'=> $request['uf'], 
-            'valor_cl'=> $request['cl'],
-        ]);*/
-
+            'luz'=> $request['luz']
+        ]);
+        //dd($request['comuna']);
+/*
         $file = $request->file('imagen');
         $nombre = 'inmob_'. time(). '_'. $file->getClientOriginalExtension();
         $path = public_path().'/imagenes/propiedades/';
         $file->move($path,$nombre);
         dd($path);
-       dd($nombre);
+       dd($nombre);*/
     }
 
     /**

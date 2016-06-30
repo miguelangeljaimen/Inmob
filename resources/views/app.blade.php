@@ -31,8 +31,8 @@
 		    </div>
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		        <ul class="nav navbar-nav">
-			    	<li><a href="/">Ventas</a></li>
-			    	<li><a href="/">Arriendos</a></li>
+			    	<li><a href="{{route('admin.clientes.index')}}">Clientes</a></li>
+			    	<li><a href="{{route('admin.propiedades.index')}}">Propiedades</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 				    @if (Auth::guest())

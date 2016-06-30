@@ -20,7 +20,6 @@ class HomeController extends Controller
 
 
         //return \View::make('home', ['regiones'=>$regiones, 'comunas'=>$comunas]);  //linea profesor (funciona) 
-        //return \View::make('home', compact('regiones', 'provincias', 'comunas'));   //linea tutoial (funciona)
         return \View::make('home', compact('regiones', 'provincias', 'comunas'));   //linea tutoial (funciona)
     	
     }

@@ -1,5 +1,4 @@
-@extends('app')
-@section('content')
+<?php $__env->startSection('content'); ?>
     <div class="container">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
@@ -14,21 +13,23 @@
                                 <th>Acciones</th>
                             </thead>
                             <tbody>
-                                @foreach($propiedades as $propiedad)
+                                <?php foreach($propiedades as $propiedad): ?>
                                     <tr>
-                                        <td>{{$propiedad->id_propiedad}}</td>
-                                        <td>{{$propiedad->id_cliente}}</td>
-                                        <td>{{$propiedad->id_categoria}}</td>
+                                        <td><?php echo e($propiedad->id_propiedad); ?></td>
+                                        <td><?php echo e($propiedad->id_cliente); ?></td>
+                                        <td><?php echo e($propiedad->id_categoria); ?></td>
                                         <td><a href="" class="btn btn-success btn-xs">Publicar</a> <a href="" class="btn btn-danger btn-xs">Editar</a> <a href="" class="btn btn-danger btn-xs">Eliminar</a></td>
                                     </tr>
-                                @endforeach 
+                                <?php endforeach; ?> 
                             </tbody>
                         </table>
-                        {!!$propiedades->render();!!}
-                        <li><a href="{{route('admin.propiedades.create')}}">Crear</a></li>
+                        <?php echo $propiedades->render();; ?>
+
+                        <li><a href="<?php echo e(route('admin.propiedades.create')); ?>">Crear</a></li>
                     </div> 
                 </div>
             </div>
         </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
