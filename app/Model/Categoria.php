@@ -15,5 +15,6 @@ class Categoria extends Model
     ];
 
     protected $hidden = ['id'];
+
 }
 

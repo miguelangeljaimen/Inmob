@@ -22,7 +22,8 @@ class AuthController extends Controller
     */
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
-    protected $redirectTo = '/home';
+
+    protected $redirectTo = '/';
     /**
      * Create a new authentication controller instance.
      *
@@ -33,6 +34,9 @@ class AuthController extends Controller
     {
         $this->middleware('guest', ['except' => 'getLogout']);
     }
+
+        protected $redirectPath = '/admin/clientes';
+        //protected $loginPath = 'auth/login';
 
     /**
      * Get a validator for an incoming registration request.
@@ -65,9 +69,10 @@ class AuthController extends Controller
         return User::create([
             'nombres_user' => $data['name'],
             'apellidos_user' => $data['apellidos'],
-           // 'rol_user' => 'usuario',
+           'rol_user' => 'admin',
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
     }
+
 }

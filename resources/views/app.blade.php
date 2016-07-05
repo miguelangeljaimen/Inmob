@@ -40,7 +40,7 @@
 						<li><a href="{{route('auth/register')}}">Register</a></li>
 				    @else
 		                <li>
-		                    <a href="#">{{ Auth::user()->nombres_user }}</a>
+		                    <a href="#">{{ Auth::user()->rol_user }}</a>
 		                </li>
 		                <li><a href="{{route('auth/logout')}}">Logout</a></li>
 		                
@@ -49,7 +49,7 @@
 			</div>
 		</div>
 	</nav>
- 
+ 	@include('flash::message')
 	@yield('content')
  
 	<!-- Scripts -->

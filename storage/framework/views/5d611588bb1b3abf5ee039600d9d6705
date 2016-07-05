@@ -41,7 +41,7 @@
 						<li><a href="<?php echo e(route('auth/register')); ?>">Register</a></li>
 				    <?php else: ?>
 		                <li>
-		                    <a href="#"><?php echo e(Auth::user()->nombres_user); ?></a>
+		                    <a href="#"><?php echo e(Auth::user()->rol_user); ?></a>
 		                </li>
 		                <li><a href="<?php echo e(route('auth/logout')); ?>">Logout</a></li>
 		                
@@ -50,7 +50,7 @@
 			</div>
 		</div>
 	</nav>
- 
+ 	<?php echo $__env->make('flash::message', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 	<?php echo $__env->yieldContent('content'); ?>
  
 	<!-- Scripts -->

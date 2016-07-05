@@ -1,0 +1,81 @@
+ 
+<?php $__env->startSection('content'); ?>
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="panel panel-default">
+                <div class="panel-heading">Crear propiedad</div>
+ 
+                <div class="panel-body">
+
+                    <?php echo Form::open(['route' => ['admin.propiedades.update', $propiedad], 'method' => 'PUT','files'=> true, 'class' => 'form']); ?>
+
+
+                        <div class="form-group">
+                            
+                            <div class="col-md-12"> 
+                             <label>Cliente</label>
+                                <?php echo Form::select ('cliente', $clientes, $propiedad->id_cliente , ['class'=>'form-control','style'=>'','id'=>'cliente', 'placeholder' =>'escoja un cliente']); ?>
+
+                            </div>
+                            <?php echo $__env->make('templates.partials.chile', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                            <div class="col-md-8"> 
+                                <label>Categoria</label>
+                                <?php echo Form::select ('categoria', $categorias, 0 , ['class'=>'form-control','style'=>'','id'=>'cliente', 'placeholder' =>'escoja una categoria']); ?>
+
+                            </div>  
+                            <div class="col-md-6"> 
+                                <label>Baños</label>
+                                <?php echo Form::select ('bagnos', $cantidades, 0 , ['class'=>'form-control','style'=>'','id'=>'cliente', 'placeholder' =>'escoja una categoria']); ?>
+
+                            </div>  
+                            <div class="col-md-6"> 
+                                <label>Dormitorios</label>
+                                <?php echo Form::select ('dormitorios', $cantidades, 0 , ['class'=>'form-control','style'=>'','id'=>'cliente', 'placeholder' =>'escoja una categoria']); ?>
+
+                            </div>  
+                            <div class="col-md-4"> 
+                            <label>Bodega</label>
+                                <?php echo Form::select('bodega', array('1' => 'SI', '2' => 'NO'), 'NO', array('class'=>'form-control','style'=>'' )); ?>
+
+                            </div>  
+                            <div class="col-md-4"> 
+                            <label>Agua</label>
+                                <?php echo Form::select('agua', array('1' => 'SI', '2' => 'NO'), 'NO', array('class'=>'form-control','style'=>'' )); ?>
+
+                            </div>  
+                            <div class="col-md-4"> 
+                            <label>Luz</label>
+                                <?php echo Form::select('luz', array('1' => 'SI', '2' => 'NO'), 'NO', array('class'=>'form-control','style'=>'' )); ?>
+
+                            </div>  
+
+                            <div class="col-md-4">
+                                <?php echo Form::label('imagen', 'Imagen'); ?>
+
+                                <?php echo Form::file('imagen'); ?>
+
+                            </div>
+                        </div>
+                            
+                        <div class="form-group col-md-4">
+                            <?php echo Form::submit('editar propiedad', ['class'=>'btn btn-danger']); ?>
+
+                        </div>
+                       
+                      
+                    <?php echo Form::close(); ?>
+
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+
+<?php $__env->stopSection(); ?>
+
+    
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Model\Cliente;
 use App\Model\Region;
+use Laracasts\Flash\Flash;
 
 class ClienteController extends Controller
 {
@@ -29,6 +30,7 @@ class ClienteController extends Controller
      */
     public function create()
     {
+        
         return view('admin.clientes.create');
     }
 
@@ -40,13 +42,20 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-      return Cliente::create([
-            'nombre_cliente' => $request['nombre'],
-            'rut_cliente' => $request['rut'],
-            'email_cliente' => $request['email'],
-            'fono_cliente' => $request['fono']
-        ]);
-       dd($request['rut'], $request['nombre']);
+      //return Cliente::create([
+            //'nombre_cliente' => $request['nombre'],
+            //'rut_cliente' => $request['rut'],
+            //'email_cliente' => $request['email'],
+            $cliente = new Cliente;
+            $cliente->nombre_cliente = $request->nombre;
+            $cliente->rut_cliente = $request->rut;
+            $cliente->email_cliente = $request->email;
+            $cliente->fono_cliente = $request->fono;
+            
+            $cliente->save();
+                    Flash::info('El cliente '.$cliente->nombre_cliente. ' fué Creado exitosamente!!');
+             return redirect()->route('admin.clientes.index');
+            //dd($cli);
       
     }
 
@@ -69,7 +78,8 @@ class ClienteController extends Controller
      */
     public function edit($id)
     {
-    
+       $cliente = Cliente::find($id);
+       return view('admin.clientes.edit')->with('cliente', $cliente);
     }
 
     /**
@@ -81,7 +91,14 @@ class ClienteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $cliente = Cliente::find($id);
+        $cliente->nombre_cliente = $request->nombre;
+        $cliente->rut_cliente = $request->rut;
+        $cliente->email_cliente = $request->email;
+        $cliente->fono_cliente = $request->fono;
+        $cliente->save();
+         Flash::success('El cliente '.$cliente->nombre_cliente.' fué editado exitosamente!!');
+        return redirect()->route('admin.clientes.index');
     }
 
     /**
@@ -92,6 +109,11 @@ class ClienteController extends Controller
      */
     public function destroy($id)
     {
-       return view('admin.clientes.destroy');
+        $cliente = Cliente::find($id);
+        $cliente->delete();
+        Flash::info('El cliente '.$cliente->nombre_cliente.' fué eliminado exitosamente!!');
+        //Flash::success('El cliente'.$cliente->nombre.'ha sido borrado exitosamente!');
+        return redirect()->route('admin.clientes.index');
+      //return view('admin.clientes.destroy');
     }
 }

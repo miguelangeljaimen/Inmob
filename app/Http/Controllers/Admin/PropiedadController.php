@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Model\Propiedad;
@@ -13,7 +12,7 @@ use App\Model\Provincia;
 use App\Model\Cliente;
 use App\Model\Categoria;
 use App\Model\Cantidad;
-
+use Laracasts\Flash\Flash;
 class PropiedadController extends Controller
 {
     /**
@@ -21,9 +20,11 @@ class PropiedadController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-         $propiedades = Propiedad::orderBy('id_propiedad', 'desc')->paginate(10);
+    public function index(Request $request)
+    {   
+            //dd($request->get('nombre'));
+    //buscar($request->id)->
+         $propiedades = Propiedad::buscar($request->get('id'))->orderBy('id_propiedad', 'desc')->paginate(10);
         return view('admin.propiedades.index')->with('propiedades',$propiedades);
         //return view('admin.propiedades.index');
     }
@@ -72,7 +73,7 @@ class PropiedadController extends Controller
      */
     public function store(Request $request)
     {
-         Propiedad::create([
+        /* Propiedad::create([
             'id_cliente'=> $request['cliente'], 
             'id_region'=> $request['region'], 
             'id_provincia'=> $request['provincia'], 
@@ -83,7 +84,26 @@ class PropiedadController extends Controller
             'bodega'=> $request['bodega'], 
             'agua'=> $request['agua'], 
             'luz'=> $request['luz']
-        ]);
+        ]);*/
+
+            $propiedad = new Propiedad;
+            $propiedad->id_cliente = $request->cliente; 
+            $propiedad->id_region = $request->region; 
+            $propiedad->id_provincia = $request->provincia; 
+            $propiedad->id_comuna = $request->comuna;
+            $propiedad->id_categoria = $request->categoria; 
+            $propiedad->bagnos = $request->bagnos; 
+            $propiedad->dormitorios = $request->ormitorios; 
+            $propiedad->bodega = $request->bodega; 
+            $propiedad->agua = $request->agua;
+            $propiedad->luz = $request->luz;
+            
+            $propiedad->save();
+            Flash::info('Se ha ingresado una nueva propiedad exitosamente!!');
+            return redirect()->route('admin.propiedades.index');
+
+        //$propiedad = new Propiedad($request->all());
+       // dd($request->all());
         //dd($request['comuna']);
 /*
         $file = $request->file('imagen');
@@ -113,7 +133,15 @@ class PropiedadController extends Controller
      */
     public function edit($id)
     {
-        //
+        $regiones = Region::lists('nombre', 'id');//aqui ingrso en primer lugar lo que quiero que muestre el select y luego el valur o lo que quiero que sea enviado por el select.
+        $provincias = Provincia::lists('nombre', 'id');
+        $comunas = Comuna::lists('nombre', 'id');
+        $clientes = Cliente::lists('nombre_cliente', 'id_cliente');
+        $categorias = Categoria::lists('nombre', 'id');
+        $cantidades = Cantidad::lists('nombre', 'id');
+        $propiedad = Cliente::find($id);
+        return \View::make('admin.propiedades.create', compact('regiones', 'provincias', 'comunas','clientes','categorias','cantidades'))->with('propiedad', $propiedad);;
+      // return view('admin.propiedades.edit')->with('propiedad', $propiedad);
     }
 
     /**
@@ -125,7 +153,22 @@ class PropiedadController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+            $propiedad = Propiedad::find($id);
+            $propiedad->id_cliente = $request->cliente; 
+            $propiedad->id_region = $request->region; 
+            $propiedad->id_provincia = $request->provincia; 
+            $propiedad->id_comuna = $request->comuna;
+            $propiedad->id_categoria = $request->categoria; 
+            $propiedad->bagnos = $request->bagnos; 
+            $propiedad->dormitorios = $request->ormitorios; 
+            $propiedad->bodega = $request->bodega; 
+            $propiedad->agua = $request->agua;
+            $propiedad->luz = $request->luz;
+            
+            $propiedad->save();
+            Flash::info('Se ha ingresado una nueva propiedad exitosamente!!');
+            return redirect()->route('admin.propiedades.index');
     }
 
     /**
@@ -136,7 +179,12 @@ class PropiedadController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $propiedad = Propiedad::find($id);
+        $propiedad->delete();
+        Flash::info('la propiedad de '.$propiedad->getCliente->nombre_cliente.' fué eliminado exitosamente!!');
+        //Flash::success('El cliente'.$cliente->nombre.'ha sido borrado exitosamente!');
+        return redirect()->route('admin.propiedades.index');
+      //return view('admin.clientes.destroy');
     }
 
 

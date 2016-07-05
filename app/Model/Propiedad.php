@@ -23,4 +23,34 @@ class Propiedad extends Model
     ];
 
     protected $hidden = ['id_propiedad'];
+
+    public function getCliente(){
+        return $this->belongsTo('App\Model\Cliente', 'id_cliente', 'id_cliente');
+    }
+
+
+    public function getRegion(){
+        return $this->belongsTo('App\Model\Region', 'id_region', 'id');
+    }
+
+    public function getProvincia(){
+        return $this->belongsTo('App\Model\Categoria', 'id_provincia', 'id');
+    }
+
+    public function getComuna(){
+        return $this->belongsTo('App\Model\Categoria', 'id_comuna', 'id');
+    }
+
+    public function getCategoria(){
+        return $this->belongsTo('App\Model\Categoria', 'id_categoria', 'id');
+    }
+
+    public function scopeBuscar($query, $id){
+        if($id !=''){
+          return $query->where('id_cliente', $id);
+         //dd($query);
+          
+        }
+        
+    }
 }

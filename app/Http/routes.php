@@ -11,9 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [
+    'as' => 'home',
+    'uses' => 'HomeController@index'
+    ]);
 
 Route::get('home', [
     'as' => 'home',
@@ -34,14 +35,35 @@ Route::post('auth/register', ['as' => 'auth/register', 'uses' => 'Auth\AuthContr
 //Route::get('comunas/{id}', 'HomeController@getComunas');
 Route::get('provincias/{id}', 'Admin\PropiedadController@getProvincias');
 Route::get('comunas/{id}', 'Admin\PropiedadController@getComunas');
-Route::get('admin/propiedades/provincias/{id}', 'Admin\PropiedadController@getProvincias');
-Route::get('admin/propiedades/comunas/{id}', 'Admin\PropiedadController@getComunas');
+
+
+
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'],function(){
+
+		Route::get('propiedades/provincias/{id}', 'Admin\PropiedadController@getProvincias');
+		Route::get('propiedades/comunas/{id}', 'Admin\PropiedadController@getComunas');
+
+		Route::resource('clientes', 'Admin\ClienteController');
+		Route::get('clientes/{id}/destroy',
+		[
+		'uses'=>'Admin\ClienteController@destroy', 
+		'as' => 'admin.clientes.destroy'
+		]);
+
+		Route::resource('propiedades', 'Admin\PropiedadController');
+		Route::get('propiedades/{id}/destroy',
+		[
+		'uses'=>'Admin\PropiedadController@destroy', 
+		'as' => 'admin.propiedades.destroy'
+		]);
+
+	});
+
 
 // Admin routes...
-Route::resource('admin/clientes', 'Admin\ClienteController');
-Route::get('admin/clientes/{id}/destroy',['uses'=>'ClienteController@destroy', 'as' => 'admin.clientes.destroy']);
 
-Route::resource('admin/propiedades', 'Admin\PropiedadController');
+
+
 
 Route::get('prueba','HomeController@inde');
 

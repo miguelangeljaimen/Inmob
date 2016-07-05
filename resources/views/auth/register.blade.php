@@ -14,6 +14,7 @@
                             <label>Nombres</label>
                             {!! Form::input('text', 'name', '', ['class'=> 'form-control']) !!}
                         </div>
+
                         <div class="form-group">
                             <label>Apellidos</label>
                             {!! Form::input('text', 'apellidos', '', ['class'=> 'form-control']) !!}
