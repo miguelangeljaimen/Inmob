@@ -35,6 +35,9 @@ class CreatePropiedadesTable extends Migration
             
             $table->integer('dormitorios')->unsigned()->nullable();
             $table->foreign('dormitorios')->references('id')->on('cantidades');
+
+            
+            $table->enum('estado', ['publico', 'privado'])->default('privado');
             
             $table->enum('bodega', ['SI', 'NO'])->default('NO')->nullable();
             

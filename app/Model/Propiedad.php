@@ -17,6 +17,7 @@ class Propiedad extends Model
     'id_categoria', 
     'bagnos', 
     'dormitorios', 
+    'estado',
     'bodega', 
     'agua', 
     'luz'
@@ -34,11 +35,11 @@ class Propiedad extends Model
     }
 
     public function getProvincia(){
-        return $this->belongsTo('App\Model\Categoria', 'id_provincia', 'id');
+        return $this->belongsTo('App\Model\Provincia', 'id_provincia', 'id');
     }
 
     public function getComuna(){
-        return $this->belongsTo('App\Model\Categoria', 'id_comuna', 'id');
+        return $this->belongsTo('App\Model\Comuna', 'id_comuna', 'id');
     }
 
     public function getCategoria(){

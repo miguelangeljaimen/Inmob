@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Model\Cliente;
 use App\Model\Region;
 use Laracasts\Flash\Flash;
+use App\Model\Propiedad;
 
 class ClienteController extends Controller
 {
@@ -116,4 +117,11 @@ class ClienteController extends Controller
         return redirect()->route('admin.clientes.index');
       //return view('admin.clientes.destroy');
     }
+
+    public function info($id)
+    {
+         $cliente = Cliente::find($id);
+         $propiedades = Cliente::find($id)->getPropiedades()->paginate(10);
+
+       return view('admin.clientes.info')->with('cliente', $cliente)->with('propiedades', $propiedades);}
 }

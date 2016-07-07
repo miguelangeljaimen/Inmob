@@ -1,4 +1,4 @@
-@extends('app')
+@extends('admin/admin')
 @section('content')
     <div class="container">
         <div class="row">
@@ -35,7 +35,12 @@
                                             <td>{{$propiedad->getCategoria->nombre}}</td>
                                             <td>
                                             
-                                                <a href="" title="Publicar" class="btn btn-Warning btn-sm"><span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span></a> 
+                                               @if($propiedad->estado == "privado")
+                                               <a href="" title="publicar" class="btn btn-Warning btn-sm"><span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span></a>
+                                               @else
+                                                  <a href="" title="hacer privado" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>  
+                                               @endif
+                                              
                                             
                                                 <a href="{{route('admin.propiedades.edit', $propiedad->id_propiedad)}}"  title="Editar" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a> 
 
@@ -50,9 +55,9 @@
                                     @endforeach 
                             </tbody>
                         </table>
-                        {!!$propiedades->render();!!}
-                        <li><a href="{{route('admin.propiedades.create')}}">Crear</a></li>
+                        <a href="{{route('admin.propiedades.create')}}" title="Nuevo" class="btn  btn-md"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a> 
                     </div> 
+                      {!!$propiedades->render();!!}
                 </div>
             </div>
         </div>

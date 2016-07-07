@@ -17,5 +17,12 @@ class Cliente extends Model
     ];
 
     protected $hidden = ['id_cliente'];
+
+      public function getPropiedades()
+    {
+//        return $this->hasMany('App\Model\Propiedad', 'id_cliente', 'id_cliente');
+        return $this->hasMany('App\Model\Propiedad', 'id_cliente', 'id_cliente');
+    }
+
 }
 

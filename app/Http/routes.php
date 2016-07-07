@@ -49,6 +49,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'],function(){
 		'uses'=>'Admin\ClienteController@destroy', 
 		'as' => 'admin.clientes.destroy'
 		]);
+		Route::get('clientes/{id}/info',
+		[
+		'uses'=>'Admin\ClienteController@info', 
+		'as' => 'admin.clientes.info'
+		]);
 
 		Route::resource('propiedades', 'Admin\PropiedadController');
 		Route::get('propiedades/{id}/destroy',
