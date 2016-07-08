@@ -51,7 +51,10 @@ class Propiedad extends Model
           return $query->where('id_cliente', $id);
          //dd($query);
           
-        }
-        
+        }   
+    }
+
+    public function getPublicacion(){
+        return $this->belongsTo('App\Model\Publicacion', 'id_publicacion', 'id');
     }
 }

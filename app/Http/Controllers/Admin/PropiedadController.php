@@ -22,8 +22,7 @@ class PropiedadController extends Controller
      */
     public function index(Request $request)
     {   
-            //dd($request->get('nombre'));
-    //buscar($request->id)->
+
          $propiedades = Propiedad::buscar($request->get('id'))->orderBy('id_propiedad', 'desc')->paginate(10);
         return view('admin.propiedades.index')->with('propiedades',$propiedades);
         //return view('admin.propiedades.index');
@@ -133,14 +132,16 @@ class PropiedadController extends Controller
      */
     public function edit($id)
     {
+        
         $regiones = Region::lists('nombre', 'id');//aqui ingrso en primer lugar lo que quiero que muestre el select y luego el valur o lo que quiero que sea enviado por el select.
         $provincias = Provincia::lists('nombre', 'id');
         $comunas = Comuna::lists('nombre', 'id');
         $clientes = Cliente::lists('nombre_cliente', 'id_cliente');
         $categorias = Categoria::lists('nombre', 'id');
         $cantidades = Cantidad::lists('nombre', 'id');
-        $propiedad = Cliente::find($id);
-        return \View::make('admin.propiedades.create', compact('regiones', 'provincias', 'comunas','clientes','categorias','cantidades'))->with('propiedad', $propiedad);;
+        $propiedad = Propiedad::find($id);
+        //dd($propiedad);
+        return \View::make('admin.propiedades.edit', compact('regiones', 'provincias', 'comunas','clientes','categorias','cantidades','propiedad'))->with('propiedad', $propiedad);
       // return view('admin.propiedades.edit')->with('propiedad', $propiedad);
     }
 
@@ -152,22 +153,23 @@ class PropiedadController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
+    {       
+        //dd($request);
 
             $propiedad = Propiedad::find($id);
-            $propiedad->id_cliente = $request->cliente; 
+            //$propiedad->id_cliente = $request->cliente; 
             $propiedad->id_region = $request->region; 
             $propiedad->id_provincia = $request->provincia; 
             $propiedad->id_comuna = $request->comuna;
             $propiedad->id_categoria = $request->categoria; 
             $propiedad->bagnos = $request->bagnos; 
-            $propiedad->dormitorios = $request->ormitorios; 
+            $propiedad->dormitorios = $request->dormitorios; 
             $propiedad->bodega = $request->bodega; 
             $propiedad->agua = $request->agua;
             $propiedad->luz = $request->luz;
             
             $propiedad->save();
-            Flash::info('Se ha ingresado una nueva propiedad exitosamente!!');
+            Flash::info('Se ha editado una propiedad exitosamente!!');
             return redirect()->route('admin.propiedades.index');
     }
 

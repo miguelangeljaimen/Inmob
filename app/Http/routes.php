@@ -62,6 +62,13 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'],function(){
 		'as' => 'admin.propiedades.destroy'
 		]);
 
+		Route::resource('publicaciones', 'Admin\PublicacionController');
+		Route::get('publicaciones/{id}/destroy',
+		[
+		'uses'=>'Admin\PublicacionController@destroy', 
+		'as' => 'admin.publicaciones.destroy'
+		]);
+
 	});
 
 
