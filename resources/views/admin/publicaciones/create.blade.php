@@ -14,6 +14,11 @@
                             <div class="form-group">
                                {!! Form::hidden('user', Auth::user()->id_user) !!}
                             </div>
+
+                            <label>Tipo</label>
+                                {!! Form::select('tipo', array('venta' => 'Venta', 'arriendo' => 'Arriendo'), 'arriendo', array('class'=>'form-control','style'=>'' )) !!}
+                            </div>  
+
                             <div class="form-group">
                                 <label>Titulo</label>
                                 {!! Form::text('titulo', null, ['class'=> 'form-control']) !!}

@@ -92,7 +92,7 @@ class PropiedadController extends Controller
             $propiedad->id_comuna = $request->comuna;
             $propiedad->id_categoria = $request->categoria; 
             $propiedad->bagnos = $request->bagnos; 
-            $propiedad->dormitorios = $request->ormitorios; 
+            $propiedad->dormitorios = $request->dormitorios; 
             $propiedad->bodega = $request->bodega; 
             $propiedad->agua = $request->agua;
             $propiedad->luz = $request->luz;
@@ -141,6 +141,7 @@ class PropiedadController extends Controller
         $cantidades = Cantidad::lists('nombre', 'id');
         $propiedad = Propiedad::find($id);
         //dd($propiedad);
+
         return \View::make('admin.propiedades.edit', compact('regiones', 'provincias', 'comunas','clientes','categorias','cantidades','propiedad'))->with('propiedad', $propiedad);
       // return view('admin.propiedades.edit')->with('propiedad', $propiedad);
     }

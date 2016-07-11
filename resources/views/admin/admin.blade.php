@@ -4,7 +4,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Laravel</title>
- 
+ 		{!! Html::script('assets/js/jquery-2.1.4.js') !!}
 	{!! Html::style('assets/css/bootstrap.css') !!}
  
 	<!-- Fonts -->
@@ -53,7 +53,7 @@
 	@yield('content')
  
 	<!-- Scripts -->
-	{!! Html::script('assets/js/jquery-2.1.4.js') !!}
+
 	{!! Html::script('assets/js/bootstrap.min.js') !!}
 	{!! Html::script('assets/js/utilidades.js') !!}
 

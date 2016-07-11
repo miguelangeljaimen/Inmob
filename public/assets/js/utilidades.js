@@ -26,3 +26,21 @@ $("#provincia").change(function(event){
 		}
 	});
 });
+
+
+$("#categoria").change(function(){
+	if ($("#categoria").val()>=1 && $("#categoria").val()<=4 ){
+		$("#habitacional").show()
+		$("#rural").hide()
+	}
+	else if ($("#categoria").val()==5 || $("#categoria").val()==6 ){
+		$("#habitacional").show()
+		$("#rural").show()
+	}else{
+		$("#habitacional").hide()
+		$("#rural").show()
+	}
+
+	
+});
+

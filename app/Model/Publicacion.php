@@ -10,7 +10,8 @@ class Publicacion extends Model
 
     protected $fillable = [
     'id_propiedad', 
-    'id_user', 
+    'id_user',
+    'tippo', 
     'titulo', 
     'descripcion', 
     'valor_uf', 

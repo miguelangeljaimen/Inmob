@@ -21,6 +21,8 @@ class CreatePublicacionesTable extends Migration
             $table->integer('id_user')->unsigned();
             $table->foreign('id_user')->references('id_user')->on('users');
 
+            $table->enum('tipo', ['arriendo', 'venta']);
+
             $table->string('titulo');
             
             $table->text('descripcion');
