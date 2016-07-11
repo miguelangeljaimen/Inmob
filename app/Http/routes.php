@@ -38,35 +38,43 @@ Route::get('comunas/{id}', 'Admin\PropiedadController@getComunas');
 
 
 
-Route::group(['prefix' => 'admin', 'middleware' => 'auth'],function(){
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'administracion']],function(){
 
-		Route::get('propiedades/provincias/{id}', 'Admin\PropiedadController@getProvincias');
-		Route::get('propiedades/comunas/{id}', 'Admin\PropiedadController@getComunas');
+		Route::get('/', 'admin\AdminController@index');
 
-		Route::resource('clientes', 'Admin\ClienteController');
+		Route::get('propiedades/provincias/{id}', 'admin\PropiedadController@getProvincias');
+		Route::get('propiedades/comunas/{id}', 'admin\PropiedadController@getComunas');
+
+		Route::resource('clientes', 'admin\ClienteController');
 		Route::get('clientes/{id}/destroy',
 		[
-		'uses'=>'Admin\ClienteController@destroy', 
+		'uses'=>'admin\ClienteController@destroy', 
 		'as' => 'admin.clientes.destroy'
 		]);
 		Route::get('clientes/{id}/info',
 		[
-		'uses'=>'Admin\ClienteController@info', 
+		'uses'=>'admin\ClienteController@info', 
 		'as' => 'admin.clientes.info'
 		]);
 
-		Route::resource('propiedades', 'Admin\PropiedadController');
+		Route::resource('propiedades', 'admin\PropiedadController');
 		Route::get('propiedades/{id}/destroy',
 		[
-		'uses'=>'Admin\PropiedadController@destroy', 
+		'uses'=>'admin\PropiedadController@destroy', 
 		'as' => 'admin.propiedades.destroy'
 		]);
 
-		Route::resource('publicaciones', 'Admin\PublicacionController');
+		Route::resource('publicaciones', 'admin\PublicacionController');
 		Route::get('publicaciones/{id}/destroy',
 		[
-		'uses'=>'Admin\PublicacionController@destroy', 
+		'uses'=>'admin\PublicacionController@destroy', 
 		'as' => 'admin.publicaciones.destroy'
+		]);
+
+		Route::get('publicaciones/{id}/publicacion',
+		[
+		'uses'=>'admin\PublicacionController@create', 
+		'as' => 'admin.publicaciones.create'
 		]);
 
 	});

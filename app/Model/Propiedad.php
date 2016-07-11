@@ -46,6 +46,10 @@ class Propiedad extends Model
         return $this->belongsTo('App\Model\Categoria', 'id_categoria', 'id');
     }
 
+    public function getPublicacion(){
+        return $this->belongsTo('App\Model\Publicacion', 'id_publicacion', 'id');
+    }
+
     public function scopeBuscar($query, $id){
         if($id !=''){
           return $query->where('id_cliente', $id);
@@ -54,7 +58,5 @@ class Propiedad extends Model
         }   
     }
 
-    public function getPublicacion(){
-        return $this->belongsTo('App\Model\Publicacion', 'id_publicacion', 'id');
-    }
+
 }

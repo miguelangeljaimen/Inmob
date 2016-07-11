@@ -21,7 +21,8 @@ class PublicacionController extends Controller
      */
     public function index()
     {
-        
+        $publicaciones = Publicacion::orderBy('id', 'desc')->paginate(10);
+        return view('admin.publicaciones.index')->with('publicaciones',$publicaciones);
     }
 
     /**
@@ -29,10 +30,10 @@ class PublicacionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        
-         return view('admin.publicaciones.create');
+        $propiedad=$id;
+        return view('admin.publicaciones.create')->with('propiedad',$propiedad);;
     }
 
     /**
@@ -44,7 +45,7 @@ class PublicacionController extends Controller
     public function store(Request $request)
     {
      
-      
+      //dd($request);
        $publicacion = new Publicacion;
             $publicacion->id_propiedad = $request->propiedad;
             $publicacion->id_user = $request->user;
@@ -54,6 +55,13 @@ class PublicacionController extends Controller
             $publicacion->valor_cl = $request->valor_cl;
             
             $publicacion->save();
+
+             $propiedad = Propiedad::find($request->propiedad);
+            //$propiedad->id_cliente = $request->cliente; 
+            $propiedad->estado = 'publico';
+            
+            $propiedad->save();
+
             Flash::info('Se ha publicado una nueva propiedad exitosamente!!');
             return redirect()->route('admin.publicaciones.index');
 
@@ -79,7 +87,8 @@ class PublicacionController extends Controller
      */
     public function edit($id)
     {
-       
+         $publicacion = Publicacion::find($id);
+       return view('admin.publicaciones.edit')->with('publicacion', $publicacion);
     }
 
     /**

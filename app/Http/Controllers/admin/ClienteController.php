@@ -18,8 +18,16 @@ class ClienteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+   /* public function __construct(){
+        $this->middleware('auth');
+        $this->middleware('administracion');
+    }*/
+
+
     public function index()
     {
+        //dd('prueba');
         $clientes = Cliente::orderBy('id_cliente', 'desc')->paginate(10);
         return view('admin.clientes.index')->with('clientes',$clientes);
     }
@@ -98,7 +106,7 @@ class ClienteController extends Controller
         $cliente->email_cliente = $request->email;
         $cliente->fono_cliente = $request->fono;
         $cliente->save();
-         Flash::success('El cliente '.$cliente->nombre_cliente.' fué editado exitosamente!!');
+        Flash::success('El cliente '.$cliente->nombre_cliente.' fué editado exitosamente!!');
         return redirect()->route('admin.clientes.index');
     }
 

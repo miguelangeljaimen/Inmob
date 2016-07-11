@@ -33,12 +33,13 @@
                                             <td>{{$propiedad->id_propiedad}}</td>
                                             <td>{{$propiedad->getCliente->nombre_cliente}}</td>
                                             <td>{{$propiedad->getCategoria->nombre}}</td>
+                                          
                                             <td>
                                             
                                                @if($propiedad->estado == "privado")
-                                               <a href="" title="publicar" class="btn btn-Warning btn-sm"><span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span></a>
+                                               <a href="{{route('admin.publicaciones.create',  $propiedad->id_propiedad)}}" title="publicar" class="btn btn-Warning btn-sm"><span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span></a>
                                                @else
-                                                  <a href="" title="hacer privado" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>  
+                                                  <a href="" title="ver publicación" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>  
                                                @endif
                                               
                                             

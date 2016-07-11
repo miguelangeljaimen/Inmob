@@ -3,7 +3,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Laravel</title>
+	<title>Inmob.app</title>
  
 	{!! Html::style('assets/css/bootstrap.css') !!}
  
@@ -27,22 +27,22 @@
 			    <span class="icon-bar"></span>
 			    <span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">INMOB</a>
+			<a class="navbar-brand" href="/">INMOB.APP</a>
 		    </div>
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		        <ul class="nav navbar-nav">
-			    	<li><a href="{{route('admin.clientes.index')}}">Clientes<span class="badge">15</span></a></li>
-			    	<li><a href="{{route('admin.propiedades.index')}}">Propiedades <span class="badge">15</span></a></li>
+			    	<li><a href="{{route('admin.clientes.index')}}">Arriendos <span class="badge">15</span></a></li>
+			    	<li><a href="{{route('admin.propiedades.index')}}">Ventas <span class="badge">20</span></a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 				    @if (Auth::guest())
-				         <li><a href="{{route('auth/login')}}">Login</a></li>
-						<li><a href="{{route('auth/register')}}">Register</a></li>
+				         <li><a href="{{route('auth/login')}}">Ingresar</a></li>
+						<li><a href="{{route('auth/register')}}">Registrar</a></li>
 				    @else
 		                <li>
 		                    <a href="#">{{ Auth::user()->rol_user }}</a>
 		                </li>
-		                <li><a href="{{route('auth/logout')}}">Logout</a></li>
+		                <li><a href="{{route('auth/logout')}}">Cerrar</a></li>
 		                
 			        @endif
 				</ul>
