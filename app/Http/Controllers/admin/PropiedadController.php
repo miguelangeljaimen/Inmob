@@ -12,7 +12,12 @@ use App\Model\Provincia;
 use App\Model\Cliente;
 use App\Model\Categoria;
 use App\Model\Cantidad;
+use App\Model\Publicacion;
 use Laracasts\Flash\Flash;
+use App\Http\Requests\PropiedadRequest;
+
+
+
 class PropiedadController extends Controller
 {
     /**
@@ -29,7 +34,7 @@ class PropiedadController extends Controller
     }
 
     /** fin index*/
-
+    
 
     /**
      * Show the form for creating a new resource.
@@ -38,6 +43,7 @@ class PropiedadController extends Controller
      */
     public function create()
     {   
+        
         $regiones = Region::lists('nombre', 'id');//aqui ingrso en primer lugar lo que quiero que muestre el select y luego el valur o lo que quiero que sea enviado por el select.
         $provincias = Provincia::lists('nombre', 'id');
         $comunas = Comuna::lists('nombre', 'id');
@@ -70,26 +76,14 @@ class PropiedadController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PropiedadRequest $request)
     {
-        /* Propiedad::create([
-            'id_cliente'=> $request['cliente'], 
-            'id_region'=> $request['region'], 
-            'id_provincia'=> $request['provincia'], 
-            'id_comuna'=> $request['comuna'], 
-            'id_categoria'=> $request['categoria'], 
-            'bagnos'=> $request['bagnos'], 
-            'dormitorios'=> $request['dormitorios'], 
-            'bodega'=> $request['bodega'], 
-            'agua'=> $request['agua'], 
-            'luz'=> $request['luz']
-        ]);*/
-
             $propiedad = new Propiedad;
             $propiedad->id_cliente = $request->cliente; 
             $propiedad->id_region = $request->region; 
             $propiedad->id_provincia = $request->provincia; 
             $propiedad->id_comuna = $request->comuna;
+            $propiedad->direccion = $request->direccion;
             $propiedad->id_categoria = $request->categoria; 
             $propiedad->bagnos = $request->bagnos; 
             $propiedad->dormitorios = $request->dormitorios; 
@@ -99,18 +93,20 @@ class PropiedadController extends Controller
             
             $propiedad->save();
             Flash::info('Se ha ingresado una nueva propiedad exitosamente!!');
-            return redirect()->route('admin.propiedades.index');
+           
 
-        //$propiedad = new Propiedad($request->all());
-       // dd($request->all());
-        //dd($request['comuna']);
-/*
+        /*
         $file = $request->file('imagen');
         $nombre = 'inmob_'. time(). '_'. $file->getClientOriginalExtension();
         $path = public_path().'/imagenes/propiedades/';
         $file->move($path,$nombre);
-        dd($path);
-       dd($nombre);*/
+        $imagen = new Imagen;
+        $imagen->nombre = $nombre;
+        $imagen->id_propiedad = $nombre;
+
+         return redirect()->route('admin.propiedades.index');
+         */
+
     }
 
     /**
@@ -162,6 +158,7 @@ class PropiedadController extends Controller
             $propiedad->id_region = $request->region; 
             $propiedad->id_provincia = $request->provincia; 
             $propiedad->id_comuna = $request->comuna;
+            $propiedad->direccion = $request->direccion;
             $propiedad->id_categoria = $request->categoria; 
             $propiedad->bagnos = $request->bagnos; 
             $propiedad->dormitorios = $request->dormitorios; 
@@ -171,7 +168,15 @@ class PropiedadController extends Controller
             
             $propiedad->save();
             Flash::info('Se ha editado una propiedad exitosamente!!');
-            return redirect()->route('admin.propiedades.index');
+            
+            /*
+            $file = $request->file('imagen');
+            $nombre = 'inmob_'. time(). '_'. $file->getClientOriginalExtension();
+            $path = public_path().'/imagenes/propiedades/';
+            $file->move($path,$nombre);
+            */
+
+       return redirect()->route('admin.propiedades.index');
     }
 
     /**
@@ -188,6 +193,15 @@ class PropiedadController extends Controller
         //Flash::success('El cliente'.$cliente->nombre.'ha sido borrado exitosamente!');
         return redirect()->route('admin.propiedades.index');
       //return view('admin.clientes.destroy');
+    }
+
+        public function info($id)
+    {   
+
+         $propiedad = Propiedad::find($id);
+         $cliente = Propiedad::find($id)->getCliente;
+        return view('admin.propiedades.info')->with('propiedad',$propiedad)->with('cliente',$cliente);
+        //return view('admin.propiedades.index');
     }
 
 

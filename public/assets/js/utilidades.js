@@ -44,3 +44,13 @@ $("#categoria").change(function(){
 	
 });
 
+$("#tipo").change(function(){
+	if($("#tipo").val()=="arriendo"){
+		$("#valor_cl").show()
+		$("#valor_uf").hide()
+	}else{
+		$("#valor_cl").hide()
+		$("#valor_uf").show()
+	}
+});
+

@@ -13,10 +13,10 @@ class CreatePublicacionesTable extends Migration
     public function up()
     {
         Schema::create('publicaciones', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->unique();
             
-            $table->integer('id_propiedad')->unsigned();
-            $table->foreign('id_propiedad')->references('id_propiedad')->on('propiedades');
+            $table->integer('id_propiedad')->unsigned()->unique();
+            $table->foreign('id_propiedad')->references('id_propiedad')->on('propiedades')->onDelete('cascade');
             
             $table->integer('id_user')->unsigned();
             $table->foreign('id_user')->references('id_user')->on('users');

@@ -1,6 +1,9 @@
 @extends('admin/admin')
 @section('content')
     <div class="container">
+
+            @include('templates.partials.validaciones')
+
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <div class="panel panel-default">
@@ -14,15 +17,15 @@
                             </div>
                             <div class="form-group">
                                 <label>Rut</label>
-                                {!! Form::text('rut', '', ['class'=> 'form-control']) !!}
+                                {!! Form::text('rut_cliente', '', ['class'=> 'form-control']) !!}
                             </div>
                             <div class="form-group">
                                 <label>Email</label>
-                                {!! Form::email('email', '', ['class'=> 'form-control']) !!}
+                                {!! Form::email('email_cliente', '', ['class'=> 'form-control']) !!}
                             </div>
                             <div class="form-group">
                                 <label>Fono</label>
-                                {!! Form::number('fono', '', ['class'=> 'form-control']) !!}
+                                {!! Form::text('fono', '', ['class'=> 'form-control']) !!}
                             </div>
                             <div>                            
                                 {!! Form::submit('Crear',['class' => 'btn btn-primary']) !!}

@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Model\Cliente;
 use App\Model\Region;
 use Laracasts\Flash\Flash;
-use App\Model\Propiedad;
+//use App\Model\Propiedad;
+use App\Http\Requests\ClienteRequest;
 
 class ClienteController extends Controller
 {
@@ -49,7 +49,9 @@ class ClienteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+
+
+    public function store(ClienteRequest $request)
     {
       //return Cliente::create([
             //'nombre_cliente' => $request['nombre'],
@@ -57,8 +59,8 @@ class ClienteController extends Controller
             //'email_cliente' => $request['email'],
             $cliente = new Cliente;
             $cliente->nombre_cliente = $request->nombre;
-            $cliente->rut_cliente = $request->rut;
-            $cliente->email_cliente = $request->email;
+            $cliente->rut_cliente = $request->rut_cliente;
+            $cliente->email_cliente = $request->email_cliente;
             $cliente->fono_cliente = $request->fono;
             
             $cliente->save();
@@ -102,8 +104,8 @@ class ClienteController extends Controller
     {
         $cliente = Cliente::find($id);
         $cliente->nombre_cliente = $request->nombre;
-        $cliente->rut_cliente = $request->rut;
-        $cliente->email_cliente = $request->email;
+        $cliente->rut_cliente = $request->rut_cliente;
+        $cliente->email_cliente = $request->email_cliente;
         $cliente->fono_cliente = $request->fono;
         $cliente->save();
         Flash::success('El cliente '.$cliente->nombre_cliente.' fué editado exitosamente!!');

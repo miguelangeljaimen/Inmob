@@ -56,13 +56,24 @@ class PublicacionController extends Controller
             
             $publicacion->save();
 
-             $propiedad = Propiedad::find($request->propiedad);
+            $propiedad = Propiedad::find($request->propiedad);
             //$propiedad->id_cliente = $request->cliente; 
             $propiedad->estado = 'publico';
             
             $propiedad->save();
 
             Flash::info('Se ha publicado una nueva propiedad exitosamente!!');
+
+
+                $file = $request->file('imagen');
+                $nombre = 'inmob_'. time(). '_'. $file->getClientOriginalExtension();
+                $path = public_path().'/imagenes/propiedades/';
+                $file->move($path,$nombre);
+                $imagen = new Imagen;
+                $imagen->nombre = $nombre;
+                $imagen->id_propiedad = $request->propiedad;
+
+
             return redirect()->route('admin.publicaciones.index');
 
 
@@ -111,7 +122,19 @@ class PublicacionController extends Controller
      */
     public function destroy($id)
     {
-       
+        $publicacion = Publicacion::find($id);
+        $propiedad = $publicacion->id;
+        $propiedad = Propiedad::find($propiedad);
+            //$propiedad->id_cliente = $request->cliente; 
+        $propiedad->estado = 'privado';
+        $publicacion->delete();    
+        $propiedad->save();
+        
+        Flash::info('la propiedad de '.$propiedad->getCliente->nombre_cliente.' fué eliminado exitosamente!!');
+        
+        //$propiedad->id_cliente = $request->cliente;
+        //Flash::success('El cliente'.$cliente->nombre.'ha sido borrado exitosamente!');
+        return redirect()->route('admin.publicaciones.index');
     }
 
 }

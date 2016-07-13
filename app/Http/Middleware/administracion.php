@@ -7,6 +7,7 @@ use Session;
 use Laracasts\Flash\Flash;
 
 
+
 class administracion
 {
     protected $auth;
@@ -22,7 +23,7 @@ class administracion
      */
     public function handle($request, Closure $next)
     {
-        if($this->auth->user()->rol_user != 'usuario'){
+        if($this->auth->user()->rol_user != 'admin'){
             Flash::info('usuario '.$this->auth->user()->nombre_user.' sin privilegios!!');
             return redirect('/');
         }

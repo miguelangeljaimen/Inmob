@@ -11,7 +11,7 @@ class Publicacion extends Model
     protected $fillable = [
     'id_propiedad', 
     'id_user',
-    'tippo', 
+    'tipo', 
     'titulo', 
     'descripcion', 
     'valor_uf', 
@@ -21,8 +21,6 @@ class Publicacion extends Model
 
     protected $hidden = ['id'];
 
-    public function getPropiedad(){
-        return $this->belongsTo('App\Model\Propiedad', 'id_propiedad', 'id_propiedad');
-    }
+
 
 }

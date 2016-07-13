@@ -14,6 +14,7 @@ class Propiedad extends Model
     'id_region', 
     'id_provincia', 
     'id_comuna', 
+    'direccion', 
     'id_categoria', 
     'bagnos', 
     'dormitorios', 
@@ -46,8 +47,18 @@ class Propiedad extends Model
         return $this->belongsTo('App\Model\Categoria', 'id_categoria', 'id');
     }
 
+    public function getBagnos(){
+        return $this->belongsTo('App\Model\Cantidad', 'bagnos', 'id');
+    }
+
+
+    public function getDormitorios(){
+        return $this->belongsTo('App\Model\Cantidad', 'dormitorios', 'id');
+    }
+
+
     public function getPublicacion(){
-        return $this->belongsTo('App\Model\Publicacion', 'id_publicacion', 'id');
+        return $this->belongsTo('App\Model\Publicacion', 'id_propiedad', 'id_propiedad');
     }
 
     public function scopeBuscar($query, $id){

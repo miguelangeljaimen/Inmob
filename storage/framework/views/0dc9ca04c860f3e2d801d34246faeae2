@@ -1,6 +1,8 @@
  
 <?php $__env->startSection('content'); ?>
 
+
+
 <script type="">
     $(document).ready(function(){
          if ($("#categoria").val()>=1 && $("#categoria").val()<=4 ){
@@ -21,6 +23,7 @@
 </script>
 <?php /*dd($propiedad)*/ ?>
 <div class="container">
+<?php echo $__env->make('templates.partials.validaciones', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
@@ -31,7 +34,7 @@
 
                         <div class="form-group">
                             <label>Cliente</label>
-                            <?php echo Form::select ('cliente', $clientes, $propiedad->id_cliente , ['class'=>'form-control','style'=>'','id'=>'cliente', 'placeholder' =>'escoja un cliente']); ?>
+                            <?php echo Form::select ('cliente', $clientes, $propiedad->id_cliente , ['class'=>'form-control','style'=>'','id'=>'cliente','disabled' => 'disabled', 'placeholder' =>'escoja un cliente']); ?>
 
                         </div>
 
@@ -51,6 +54,12 @@
 
                         </div>
                         
+                        <div class="form-group">
+                            <label>Dirección</label>
+                            <?php echo Form::text ('direccion', $propiedad->direccion, ['class'=>'form-control','style'=>'','id'=>'direccion', 'placeholder' =>'Calle, Numero, Torre, Dpto.']); ?>
+
+                        </div>
+
                         <div class="form-group">
                             <label>Categoria</label>
                             <?php echo Form::select ('categoria', $categorias, $propiedad->id_categoria , ['class'=>'form-control','style'=>'','id'=>'categoria', 'placeholder' =>'escoja una cantidad']); ?>

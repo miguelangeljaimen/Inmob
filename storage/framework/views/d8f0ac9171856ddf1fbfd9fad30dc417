@@ -1,56 +1,90 @@
 <?php $__env->startSection('content'); ?>
+
+
+<script type="">
+    $(document).ready(function(){ 
+        //alert("prueba");
+                        $("#valor_cl").hide()
+                        $("#valor_uf").hide()
+                    });
+</script>
+
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Crear cliente</div>
+                    <div class="panel-heading">Publicando propiedad con ID:<?php echo e($propiedad); ?></div>
+
+
                     <div class="panel-body">
-                    <?php /*dd(Auth::user()->id_user)*/ ?>
+                        <?php /*dd(Auth::user()->id_user)*/ ?>
                         <?php echo Form::open(['route' => 'admin.publicaciones.store', 'method' => 'POST', 'class' => 'form']); ?>  
-                            <div class="form-group">
-                               <?php echo Form::hidden('propiedad', $propiedad); ?>
+                            
+                        <div class="form-group">
+                            <?php echo Form::hidden('propiedad', $propiedad); ?>
 
-                            </div>
-                            <div class="form-group">
-                               <?php echo Form::hidden('user', Auth::user()->id_user); ?>
+                        </div>
+                            
+                        <div class="form-group">
+                            <?php echo Form::hidden('user', Auth::user()->id_user); ?>
 
-                            </div>
+                        </div>
 
+                        <div class="form-group">
                             <label>Tipo</label>
-                                <?php echo Form::select('tipo', array('venta' => 'Venta', 'arriendo' => 'Arriendo'), 'arriendo', array('class'=>'form-control','style'=>'' )); ?>
+                            <?php echo Form::select('tipo', array('venta' => 'Venta', 'arriendo' => 'Arriendo'), '', array('class'=>'form-control','id'=>'tipo', 'placeholder' =>'Tipo de publicacion' )); ?>    
+                        </div>
 
-                            </div>  
+                        <div class="form-group">
+                            <label>Titulo</label>
+                            <?php echo Form::text('titulo', null, ['class'=> 'form-control']); ?>
 
-                            <div class="form-group">
-                                <label>Titulo</label>
-                                <?php echo Form::text('titulo', null, ['class'=> 'form-control']); ?>
+                        </div>
 
-                            </div>
-                            <div class="form-group">
-                                <label>Descripción</label>
-                                <?php echo Form::textarea('descripcion', '', ['class'=> 'form-control']); ?>
+                        <div class="form-group">
+                             <label>Descripción</label>
+                            <?php echo Form::textarea('descripcion', '', ['class'=> 'form-control']); ?>
 
-                            </div>
-                            <div class="form-group">
-                                <label>Valor CLP</label>
-                                <?php echo Form::text('valor_cl', '', ['class'=> 'form-control']); ?>
+                        </div>
+                
+                        <div class="form-group" id="valor_cl">
+                            <label>Valor CLP</label>
+                            <?php echo Form::text('valor_cl', '', ['class'=> 'form-control, col-md-4']); ?>
 
-                            </div>
-                            <div class="form-group">
-                                <label>Valor UF</label>
-                                <?php echo Form::text('valor_uf', '', ['class'=> 'form-control']); ?>
+                        </div>
 
-                            </div>
-                            <div>                            
-                                <?php echo Form::submit('Crear',['class' => 'btn btn-primary']); ?>
+                        <div class="form-group" id="valor_uf">
+                            <label>Valor UF</label>
+                            <?php echo Form::text('valor_uf', '', ['class'=> 'form-control, col-md-4']); ?>
 
-                            </div>
-                        <?php echo Form::close(); ?>
+                        </div>
 
+
+                        <div class="form-group">
+                            <?php echo Form::label('imagen', 'Imagen'); ?>
+
+                            <?php echo Form::file('imagen'); ?>
+
+                        </div>
+                         
+
+                        <div>                            
+                            <?php echo Form::submit('Crear',['class' => 'btn btn-primary']); ?>
+
+                        </div>
+                    <?php echo Form::close(); ?>
+
+
+     
+</div>
+
+
+
+   
                     </div> 
                 </div>
             </div>
         </div>
-    </div>
+
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('admin/admin', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

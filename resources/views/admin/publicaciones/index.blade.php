@@ -28,7 +28,7 @@
                                         
                                         <a href="{{route('admin.publicaciones.edit', $publicacion->id)}}" title="Editar cliente" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a> 
 
-                                        <a href="" onclick="return confirm('Al eliminar un cliente se eliminarán todas las propiedades asisgnadas a este')" title="Eliminar cliente" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+                                        <a href="{{route('admin.publicaciones.destroy', $publicacion->id)}}" onclick="return confirm('Se eliminara esta publicación')" title="Eliminar cliente" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
 
                                          <a href="" title="Ver información" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></a> 
                                

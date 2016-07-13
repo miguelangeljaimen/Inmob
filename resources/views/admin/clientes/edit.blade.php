@@ -14,18 +14,18 @@
                             </div>
                             <div class="form-group">
                                 <label>Rut</label>
-                                {!! Form::text('rut', $cliente->rut_cliente, ['class'=> 'form-control']) !!}
+                                {!! Form::text('rut_cliente', $cliente->rut_cliente, ['class'=> 'form-control']) !!}
                             </div>
                             <div class="form-group">
                                 <label>Email</label>
-                                {!! Form::email('email', $cliente->email_cliente, ['class'=> 'form-control']) !!}
+                                {!! Form::email('email_cliente', $cliente->email_cliente, ['class'=> 'form-control']) !!}
                             </div>
                             <div class="form-group">
                                 <label>Fono</label>
                                 {!! Form::number('fono', $cliente->fono_cliente, ['class'=> 'form-control']) !!}
                             </div>
                             <div>                            
-                                {!! Form::submit('Crear',['class' => 'btn btn-primary']) !!}
+                                {!! Form::submit('Editar',['class' => 'btn btn-primary']) !!}
                             </div>
                         {!! Form::close() !!}
                     </div> 

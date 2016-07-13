@@ -1,4 +1,4 @@
-@extends('app')
+@extends('admin/admin')
 @section('content')
     <div class="container">
         <div class="row">
@@ -7,7 +7,7 @@
                     <div class="panel-heading">Cliente</div>
                     <div class="panel-body">
 
-                        <table class="table table-striped">
+                        <table class="table table-striped table-responsive">
                           <tbody>
 
                                 <tr>
@@ -33,10 +33,13 @@
                                 <tr>
                                   <th scope="row">Fono</th>
                                   <td>{{$cliente->fono_cliente}}</td>
-                                   </tr>
+                                </tr>
                                   
                           </tbody>
                         </table>
+                                  <a href="{{route('admin.clientes.edit', $cliente->id_cliente)}}" title="Editar cliente" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a> 
+
+                                  <a href="{{route('admin.clientes.destroy', $cliente->id_cliente)}}" onclick="return confirm('Al eliminar un cliente se eliminarán todas las propiedades asisgnadas a este')" title="Eliminar cliente" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
                     </div> 
                     
                 </div>
@@ -48,7 +51,7 @@
 
 
 
-                       <table class="table table-striped">
+                       <table class="table table-striped table-responsive">
                             <thead>
                                 <th>ID</th>
                                 <th>Cliente</th>

@@ -50,7 +50,7 @@
 
                                                 <a href="<?php echo e(route('admin.propiedades.destroy', $propiedad->id_propiedad)); ?>" onclick="return confirm('Se eliminara esta propiedad')" title="Eliminar" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
 
-                                                <a href="" title="Información" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></a> 
+                                                <a href="<?php echo e(route('admin.propiedades.info',  $propiedad->id_propiedad)); ?>" title="Información" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></a> 
 
                                             </td>
 

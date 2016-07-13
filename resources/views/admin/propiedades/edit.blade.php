@@ -2,6 +2,8 @@
  
 @section('content')
 
+
+
 <script type="">
     $(document).ready(function(){
          if ($("#categoria").val()>=1 && $("#categoria").val()<=4 ){
@@ -22,6 +24,7 @@
 </script>
 {{--dd($propiedad)--}}
 <div class="container">
+@include('templates.partials.validaciones')
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
@@ -31,7 +34,7 @@
                         {!! Form::open(['route' => ['admin.propiedades.update', $propiedad], 'method' => 'PUT','files'=> true, 'class' => 'form']) !!}
                         <div class="form-group">
                             <label>Cliente</label>
-                            {!! Form::select ('cliente', $clientes, $propiedad->id_cliente , ['class'=>'form-control','style'=>'','id'=>'cliente', 'placeholder' =>'escoja un cliente'])!!}
+                            {!! Form::select ('cliente', $clientes, $propiedad->id_cliente , ['class'=>'form-control','style'=>'','id'=>'cliente','disabled' => 'disabled', 'placeholder' =>'escoja un cliente'])!!}
                         </div>
 
                         <div class="form-group col-md-4">   
@@ -47,6 +50,11 @@
                             {!! Form::select ('comuna',$comunas, $propiedad->id_comuna , ['id'=>'comuna', 'class'=>'form-control'], ['placeholder'=>'seleccion'])!!}
                         </div>
                         
+                        <div class="form-group">
+                            <label>Dirección</label>
+                            {!! Form::text ('direccion', $propiedad->direccion, ['class'=>'form-control','style'=>'','id'=>'direccion', 'placeholder' =>'Calle, Numero, Torre, Dpto.'])!!}
+                        </div>
+
                         <div class="form-group">
                             <label>Categoria</label>
                             {!! Form::select ('categoria', $categorias, $propiedad->id_categoria , ['class'=>'form-control','style'=>'','id'=>'categoria', 'placeholder' =>'escoja una cantidad'])!!}

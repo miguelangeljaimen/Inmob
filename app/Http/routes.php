@@ -64,12 +64,20 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'administracion']],f
 		'as' => 'admin.propiedades.destroy'
 		]);
 
+		Route::get('propiedades/{id}/info',
+		[
+		'uses'=>'admin\PropiedadController@info', 
+		'as' => 'admin.propiedades.info'
+		]);
+
 		Route::resource('publicaciones', 'admin\PublicacionController');
+		
 		Route::get('publicaciones/{id}/destroy',
 		[
 		'uses'=>'admin\PublicacionController@destroy', 
 		'as' => 'admin.publicaciones.destroy'
 		]);
+
 
 		Route::get('publicaciones/{id}/publicacion',
 		[

@@ -16,7 +16,7 @@ class CreatePropiedadesTable extends Migration
             $table->increments('id_propiedad');
             
             $table->integer('id_cliente')->unsigned();
-            $table->foreign('id_cliente')->references('id_cliente')->on('clientes');
+            $table->foreign('id_cliente')->references('id_cliente')->on('clientes')->onDelete('cascade');
 
             $table->integer('id_region');
             $table->foreign('id_region')->references('id')->on('regiones');
@@ -26,6 +26,8 @@ class CreatePropiedadesTable extends Migration
             
             $table->integer('id_comuna');
             $table->foreign('id_comuna')->references('id')->on('comunas');
+
+            $table->text('direccion');
             
             $table->integer('id_categoria')->unsigned();
             $table->foreign('id_categoria')->references('id')->on('categorias');

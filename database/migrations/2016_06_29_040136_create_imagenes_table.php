@@ -16,7 +16,7 @@ class CreateImagenesTable extends Migration
             $table->increments('id');
             $table->string('nombre');
             $table->integer('id_propiedad')->unsigned();
-            $table->foreign('id_propiedad')->references('id_propiedad')->on('propiedades');
+            $table->foreign('id_propiedad')->references('id_propiedad')->on('propiedades')->onDelete('cascade');
             $table->timestamps();
         });
     }
