@@ -19,7 +19,7 @@
 
                     <div class="panel-body">
                         {{--dd(Auth::user()->id_user)--}}
-                        {!! Form::open(['route' => 'admin.publicaciones.store', 'method' => 'POST', 'class' => 'form']) !!}  
+                        {!! Form::open(['route' => 'admin.publicaciones.store', 'method' => 'POST','files'=> true, 'class' => 'form']) !!}  
                             
                         <div class="form-group">
                             {!! Form::hidden('propiedad', $propiedad) !!}

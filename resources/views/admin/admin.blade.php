@@ -31,8 +31,9 @@
 		    </div>
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		        <ul class="nav navbar-nav">
-			    	<li><a href="{{route('admin.clientes.index')}}">Clientes</a></li>
-			    	<li><a href="{{route('admin.propiedades.index')}}">Propiedades</a></li>
+			    	<li><a href="{{route('admin.clientes.index')}}">Clientes  <span class="label label-success label-as-badge">{{$numeros['clientes']}}</span></a></li>
+			    	<li><a href="{{route('admin.propiedades.index')}}">Propiedades <span class="label label-success label-as-badge">{{$numeros['propiedades']}}</a></li>
+			    	<li><a href="{{route('admin.publicaciones.index')}}">Publicaciones <span class="label label-success label-as-badge">{{$numeros['publicaciones']}}</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 				    @if (Auth::guest())

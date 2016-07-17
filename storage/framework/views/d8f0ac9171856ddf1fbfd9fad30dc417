@@ -18,7 +18,7 @@
 
                     <div class="panel-body">
                         <?php /*dd(Auth::user()->id_user)*/ ?>
-                        <?php echo Form::open(['route' => 'admin.publicaciones.store', 'method' => 'POST', 'class' => 'form']); ?>  
+                        <?php echo Form::open(['route' => 'admin.publicaciones.store', 'method' => 'POST','files'=> true, 'class' => 'form']); ?>  
                             
                         <div class="form-group">
                             <?php echo Form::hidden('propiedad', $propiedad); ?>

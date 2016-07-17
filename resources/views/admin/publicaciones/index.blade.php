@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Cliente</div>
+                    <div class="panel-heading">Publicaciones {{count($publicaciones)}}</div>
                     <div class="panel-body">
                         <table class="table table-striped">
                             <thead>

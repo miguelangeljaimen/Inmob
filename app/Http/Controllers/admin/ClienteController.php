@@ -7,29 +7,37 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Model\Cliente;
 use App\Model\Region;
+use App\Model\Propiedad;
+use App\Model\Publicacion;
 use Laracasts\Flash\Flash;
 //use App\Model\Propiedad;
 use App\Http\Requests\ClienteRequest;
 
+
 class ClienteController extends Controller
 {
+    
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
+   
    /* public function __construct(){
         $this->middleware('auth');
         $this->middleware('administracion');
     }*/
 
-
     public function index()
-    {
-        //dd('prueba');
+    {   
+        
+        $numeros = $this->numeros();
+        $propiedades = Propiedad::lists('id_propiedad');
+        //dd($propiedades);
         $clientes = Cliente::orderBy('id_cliente', 'desc')->paginate(10);
-        return view('admin.clientes.index')->with('clientes',$clientes);
+        $publicaciones = Publicacion::lists('id');
+        return view('admin.clientes.index')->with('clientes',$clientes)->with('propiedades',$propiedades)->with('publicaciones',$publicaciones)->with('numeros',$numeros);
     }
 
     /**
@@ -38,9 +46,14 @@ class ClienteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        
-        return view('admin.clientes.create');
+
+    {   
+        //dd('create');
+        $numeros = $this->numeros();
+         $propiedades = Propiedad::lists('id_propiedad');
+         $clientes = Cliente::lists('nombre_cliente', 'id_cliente');
+         $publicaciones = Publicacion::lists('id');
+        return view('admin.clientes.create')->with('propiedades',$propiedades)->with('clientes',$clientes)->with('publicaciones',$publicaciones)->with('numeros',$numeros);
     }
 
     /**
@@ -53,6 +66,7 @@ class ClienteController extends Controller
 
     public function store(ClienteRequest $request)
     {
+        //dd('prueba');
       //return Cliente::create([
             //'nombre_cliente' => $request['nombre'],
             //'rut_cliente' => $request['rut'],
@@ -90,7 +104,9 @@ class ClienteController extends Controller
     public function edit($id)
     {
        $cliente = Cliente::find($id);
-       return view('admin.clientes.edit')->with('cliente', $cliente);
+       $propiedades = Propiedad::lists('id_propiedad');
+       $numeros = $this->numeros();
+       return view('admin.clientes.edit')->with('cliente', $cliente)->with('propiedades',$propiedades)->with('numeros',$numeros);
     }
 
     /**
@@ -131,7 +147,11 @@ class ClienteController extends Controller
     public function info($id)
     {
          $cliente = Cliente::find($id);
+        
+         $clientes = Cliente::lists('nombre_cliente', 'id_cliente');
          $propiedades = Cliente::find($id)->getPropiedades()->paginate(10);
+         $numeros = $this->numeros();
 
-       return view('admin.clientes.info')->with('cliente', $cliente)->with('propiedades', $propiedades);}
+       return view('admin.clientes.info')->with('cliente', $cliente)->with('propiedades', $propiedades)->with('clientes', $clientes)->with('numeros', $numeros);
+   }
 }

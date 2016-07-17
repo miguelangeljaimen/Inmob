@@ -11,6 +11,7 @@ use App\Model\Comuna;
 use App\Model\Provincia;
 use App\Model\Cliente;
 use App\Model\Categoria;
+use App\Model\Imagen;
 use App\Model\Cantidad;
 use App\Model\Publicacion;
 use Laracasts\Flash\Flash;
@@ -27,9 +28,11 @@ class PropiedadController extends Controller
      */
     public function index(Request $request)
     {   
-
-         $propiedades = Propiedad::buscar($request->get('id'))->orderBy('id_propiedad', 'desc')->paginate(10);
-        return view('admin.propiedades.index')->with('propiedades',$propiedades);
+        $clientes = Cliente::lists('nombre_cliente', 'id_cliente');
+        $publicaciones = Publicacion::lists('id');
+        $propiedades = Propiedad::buscar($request->get('id'))->orderBy('id_propiedad', 'desc')->paginate(10);
+        $numeros = $this->numeros();
+        return view('admin.propiedades.index')->with('propiedades',$propiedades)->with('clientes',$clientes)->with('publicaciones',$publicaciones)->with('numeros', $numeros);
         //return view('admin.propiedades.index');
     }
 
@@ -50,8 +53,11 @@ class PropiedadController extends Controller
         $clientes = Cliente::lists('nombre_cliente', 'id_cliente');
         $categorias = Categoria::lists('nombre', 'id');
         $cantidades = Cantidad::lists('nombre', 'id');
+        $propiedades = Propiedad::lists('id_propiedad');
+        $publicaciones = Publicacion::lists('id');
+        $numeros = $this->numeros();
 
-        return \View::make('admin.propiedades.create', compact('regiones', 'provincias', 'comunas','clientes','categorias','cantidades'));
+        return \View::make('admin.propiedades.create', compact('regiones', 'provincias', 'comunas','clientes','categorias','cantidades'))->with('propiedades',$propiedades)->with('publicaciones',$publicaciones)->with('numeros', $numeros);
     }
 
     public function getProvincias(Request $request, $id){
@@ -103,9 +109,9 @@ class PropiedadController extends Controller
         $imagen = new Imagen;
         $imagen->nombre = $nombre;
         $imagen->id_propiedad = $nombre;
-
-         return redirect()->route('admin.propiedades.index');
          */
+         return redirect()->route('admin.propiedades.index');
+        
 
     }
 
@@ -136,9 +142,11 @@ class PropiedadController extends Controller
         $categorias = Categoria::lists('nombre', 'id');
         $cantidades = Cantidad::lists('nombre', 'id');
         $propiedad = Propiedad::find($id);
+        $publicaciones = Publicacion::lists('id');
+        $numeros = $this->numeros();
         //dd($propiedad);
 
-        return \View::make('admin.propiedades.edit', compact('regiones', 'provincias', 'comunas','clientes','categorias','cantidades','propiedad'))->with('propiedad', $propiedad);
+        return \View::make('admin.propiedades.edit', compact('regiones', 'provincias', 'comunas','clientes','categorias','cantidades','propiedad'))->with('propiedad', $propiedad)->with('publicaciones',$publicaciones)->with('numeros', $numeros);
       // return view('admin.propiedades.edit')->with('propiedad', $propiedad);
     }
 
@@ -189,6 +197,7 @@ class PropiedadController extends Controller
     {
         $propiedad = Propiedad::find($id);
         $propiedad->delete();
+
         Flash::info('la propiedad de '.$propiedad->getCliente->nombre_cliente.' fué eliminado exitosamente!!');
         //Flash::success('El cliente'.$cliente->nombre.'ha sido borrado exitosamente!');
         return redirect()->route('admin.propiedades.index');
@@ -198,9 +207,15 @@ class PropiedadController extends Controller
         public function info($id)
     {   
 
-         $propiedad = Propiedad::find($id);
-         $cliente = Propiedad::find($id)->getCliente;
-        return view('admin.propiedades.info')->with('propiedad',$propiedad)->with('cliente',$cliente);
+        $propiedad = Propiedad::find($id);
+        $cliente = $propiedad->getCliente;
+        $publicacion = $propiedad->getPublicacion;
+        $imagen = $propiedad->getImagen;
+        
+        $numeros = $this->numeros();
+        return view('admin.propiedades.info')->with('propiedad',$propiedad)->with('cliente',$cliente)->with('numeros',$numeros)->with('publicacion', $publicacion)->with('imagen', $imagen);
+
+
         //return view('admin.propiedades.index');
     }
 

@@ -7,6 +7,9 @@ use BadMethodCallException;
 use Illuminate\Support\Str;
 use InvalidArgumentException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use App\Model\Propiedad;
+use App\Model\Publicacion;
+use App\Model\Cliente;
 
 abstract class Controller
 {
@@ -16,6 +19,8 @@ abstract class Controller
      * @var array
      */
     protected $middleware = [];
+
+    protected $numeros = [];
 
     /**
      * The "before" filters registered on the controller.
@@ -48,6 +53,18 @@ abstract class Controller
     public function middleware($middleware, array $options = [])
     {
         $this->middleware[$middleware] = $options;
+    }
+
+    public function numeros(){
+        $propiedades = count (Propiedad::lists('id_propiedad'));
+        $clientes = count (Cliente::lists('id_cliente'));
+        $publicaciones = count (Publicacion::lists('id'));
+        $numeros = array(
+            'propiedades' => $propiedades, 
+            'clientes' => $clientes, 
+            'publicaciones' => $publicaciones, 
+            ); 
+        return $numeros; 
     }
 
     /**

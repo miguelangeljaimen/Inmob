@@ -11,6 +11,7 @@ use App\Model\Region;
 use Laracasts\Flash\Flash;
 use App\Model\Propiedad;
 use App\Model\Publicacion;
+use App\Model\Imagen;
 
 class PublicacionController extends Controller
 {
@@ -20,9 +21,12 @@ class PublicacionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
+        $clientes = Cliente::lists('id_cliente');
+        $propiedades = Propiedad::lists('id_propiedad');
         $publicaciones = Publicacion::orderBy('id', 'desc')->paginate(10);
-        return view('admin.publicaciones.index')->with('publicaciones',$publicaciones);
+        $numeros = $this->numeros();
+        return view('admin.publicaciones.index')->with('publicaciones',$publicaciones)->with('propiedades',$propiedades)->with('clientes',$clientes)->with('numeros', $numeros);
     }
 
     /**
@@ -33,7 +37,11 @@ class PublicacionController extends Controller
     public function create($id)
     {
         $propiedad=$id;
-        return view('admin.publicaciones.create')->with('propiedad',$propiedad);;
+        $clientes = Cliente::lists('id_cliente');
+        $propiedades = Propiedad::lists('id_propiedad');
+        $publicaciones = Publicacion::lists('id');
+        $numeros = $this->numeros();
+        return view('admin.publicaciones.create')->with('propiedad',$propiedad)->with('propiedades',$propiedades)->with('clientes',$clientes)->with('publicaciones',$publicaciones)->with('numeros', $numeros);
     }
 
     /**
@@ -66,12 +74,13 @@ class PublicacionController extends Controller
 
 
                 $file = $request->file('imagen');
-                $nombre = 'inmob_'. time(). '_'. $file->getClientOriginalExtension();
+                $nombre = 'inmob_'. time(). '.'. $file->getClientOriginalExtension();
                 $path = public_path().'/imagenes/propiedades/';
                 $file->move($path,$nombre);
                 $imagen = new Imagen;
                 $imagen->nombre = $nombre;
                 $imagen->id_propiedad = $request->propiedad;
+                $imagen->save();
 
 
             return redirect()->route('admin.publicaciones.index');
@@ -99,7 +108,8 @@ class PublicacionController extends Controller
     public function edit($id)
     {
          $publicacion = Publicacion::find($id);
-       return view('admin.publicaciones.edit')->with('publicacion', $publicacion);
+         $numeros = $this->numeros();
+       return view('admin.publicaciones.edit')->with('publicacion', $publicacion)->with('numeros', $numeros);
     }
 
     /**
@@ -123,14 +133,16 @@ class PublicacionController extends Controller
     public function destroy($id)
     {
         $publicacion = Publicacion::find($id);
-        $propiedad = $publicacion->id;
-        $propiedad = Propiedad::find($propiedad);
+        $propiedad = $publicacion->id_propiedad;
+        //dd($propiedad);
+         $propiedad = Propiedad::find($propiedad);
             //$propiedad->id_cliente = $request->cliente; 
+        //dd($propiedad);
         $propiedad->estado = 'privado';
         $publicacion->delete();    
         $propiedad->save();
         
-        Flash::info('la propiedad de '.$propiedad->getCliente->nombre_cliente.' fué eliminado exitosamente!!');
+        Flash::info('la publiacion fué eliminado exitosamente!!');
         
         //$propiedad->id_cliente = $request->cliente;
         //Flash::success('El cliente'.$cliente->nombre.'ha sido borrado exitosamente!');

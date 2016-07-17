@@ -1,5 +1,7 @@
 <?php $__env->startSection('content'); ?>
+
     <div class="container">
+    <?php /*dd($imagen)*/ ?>
         <div class="row">
             <div class="col-md-4">
                 <div class="panel panel-default">
@@ -101,11 +103,50 @@
                                   
                           </tbody>
                         </table>
-                                  
                     </div> 
+
+
                     
                 </div>
             </div>
+
+              <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Publicacion</div>
+                    <div class="panel-body">
+<?php if($publicacion != null): ?>
+                        <table class="table table-striped table-responsive">
+                          <tbody>
+
+                                <tr>
+                                  <th scope="row">ID</th>
+                                  <td><?php echo e($publicacion->id); ?></td>
+                                </tr>
+                              
+                                <tr>
+                                  <th scope="row">Titulo</th>
+                                  <td><?php echo e($publicacion->titulo); ?></td>
+                                </tr>
+                                  
+                          </tbody>
+
+                        </table>
+                        <img src="<?php echo e('/imagenes/propiedades/'.$imagen->nombre); ?>" alt="" width="100" >   
+<?php else: ?>
+<h3>Sin publicación</h3>
+                        
+<?php endif; ?>                        
+                         
+                    
+
+                    </div> 
+
+
+                    
+                </div>
+            </div>
+
+
            
     </div>
 <?php $__env->stopSection(); ?>

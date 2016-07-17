@@ -30,7 +30,6 @@ class Propiedad extends Model
         return $this->belongsTo('App\Model\Cliente', 'id_cliente', 'id_cliente');
     }
 
-
     public function getRegion(){
         return $this->belongsTo('App\Model\Region', 'id_region', 'id');
     }
@@ -58,7 +57,13 @@ class Propiedad extends Model
 
 
     public function getPublicacion(){
-        return $this->belongsTo('App\Model\Publicacion', 'id_propiedad', 'id_propiedad');
+
+         return $this->belongsTo('App\Model\Publicacion', 'id_propiedad', 'id_propiedad');
+    }
+
+    public function getImagen(){
+        
+     return $this->belongsTo('App\Model\Imagen', 'id_propiedad', 'id_propiedad');   
     }
 
     public function scopeBuscar($query, $id){

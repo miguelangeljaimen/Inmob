@@ -1,6 +1,8 @@
 @extends('admin/admin')
 @section('content')
+
     <div class="container">
+    {{--dd($imagen)--}}
         <div class="row">
             <div class="col-md-4">
                 <div class="panel panel-default">
@@ -102,11 +104,50 @@
                                   
                           </tbody>
                         </table>
-                                  
                     </div> 
+
+
                     
                 </div>
             </div>
+
+              <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Publicacion</div>
+                    <div class="panel-body">
+@if($publicacion != null)
+                        <table class="table table-striped table-responsive">
+                          <tbody>
+
+                                <tr>
+                                  <th scope="row">ID</th>
+                                  <td>{{$publicacion->id}}</td>
+                                </tr>
+                              
+                                <tr>
+                                  <th scope="row">Titulo</th>
+                                  <td>{{$publicacion->titulo}}</td>
+                                </tr>
+                                  
+                          </tbody>
+
+                        </table>
+                        <img src="{{'/imagenes/propiedades/'.$imagen->nombre}}" alt="" width="100" >   
+@else
+<h3>Sin publicación</h3>
+                        
+@endif                        
+                         
+                    
+
+                    </div> 
+
+
+                    
+                </div>
+            </div>
+
+
            
     </div>
 @endsection
