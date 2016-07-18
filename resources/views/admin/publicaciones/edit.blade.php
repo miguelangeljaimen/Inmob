@@ -11,6 +11,10 @@
                         {!! Form::open(['route' => ['admin.publicaciones.update', $publicacion], 'method' => 'PUT', 'class' => 'form']) !!} 
 
                             <div class="form-group">
+                            {!! Form::hidden('user', Auth::user()->id_user) !!}
+                            </div>
+
+                            <div class="form-group">
                                {!! Form::hidden('user', Auth::user()->id_user) !!}
                             </div>
                             <div class="form-group">

@@ -9,18 +9,24 @@ use App\Http\Controllers\Controller;
 use App\Model\Region;
 use App\Model\Comuna;
 use App\Model\Provincia;
+use App\Model\Publicacion;
+use App\Model\Imagen;
+use App\Model\Propiedad;
 
 class HomeController extends Controller
 {
     public function index()
     {
-    	$regiones = Region::lists('nombre', 'id');//aqui ingrso en primer lugar lo que quiero que muestre el select y luego el valur o lo que quiero que sea enviado por el select.
+    	 $regiones = Region::lists('nombre', 'id');//aqui ingrso en primer lugar lo que quiero que muestre el select y luego el valur o lo que quiero que sea enviado por el select.
         $provincias = Provincia::lists('nombre', 'id');
+        $publicaciones = Publicacion::orderBy('id', 'desc')->paginate(5);
         $comunas = Comuna::lists('nombre', 'id');
+        $numeros = $this->numeros();
+
 
 
         //return \View::make('home', ['regiones'=>$regiones, 'comunas'=>$comunas]);  //linea profesor (funciona) 
-        return \View::make('home', compact('regiones', 'provincias', 'comunas'));   //linea tutoial (funciona)
+        return \View::make('home', compact('regiones', 'provincias', 'comunas'))->with('publicaciones', $publicaciones)->with('numeros', $numeros);   //linea tutoial (funciona)
     	
     }
 
@@ -42,8 +48,23 @@ class HomeController extends Controller
 
 
      public function login()
-    {
-        return \View::make('login');   
+    {   
+        $numeros = $this->numeros();
+        return \View::make('login')->with('numeros', $numeros);   
+    }
+
+
+
+    public function admin(){
+        $regiones = Region::lists('nombre', 'id');//aqui ingrso en primer lugar lo que quiero que muestre el select y luego el valur o lo que quiero que sea enviado por el select.
+        $provincias = Provincia::lists('nombre', 'id');
+        $publicaciones = Publicacion::orderBy('id', 'desc')->paginate(5);
+        $comunas = Comuna::lists('nombre', 'id');
+        $numeros = $this->numeros();
+
+
+        //return \View::make('home', ['regiones'=>$regiones, 'comunas'=>$comunas]);  //linea profesor (funciona) 
+        return \View::make('admin.home', compact('regiones', 'provincias', 'comunas'))->with('publicaciones', $publicaciones)->with('numeros', $numeros);
     }
 
     public function inde()

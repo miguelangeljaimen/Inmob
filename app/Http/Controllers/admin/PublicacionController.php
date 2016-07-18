@@ -56,6 +56,8 @@ class PublicacionController extends Controller
       //dd($request);
        $publicacion = new Publicacion;
             $publicacion->id_propiedad = $request->propiedad;
+            $publicacion->tipo = $request->tipo;
+
             $publicacion->id_user = $request->user;
             $publicacion->titulo = $request->titulo;
             $publicacion->descripcion = $request->descripcion;
@@ -122,6 +124,18 @@ class PublicacionController extends Controller
     public function update(Request $request, $id)
     {
         
+        $publicacion = Publicacion::find($id);
+            
+            $publicacion->id_user = $request->user;
+            
+            $publicacion->titulo = $request->titulo;
+            $publicacion->descripcion = $request->descripcion;
+            $publicacion->valor_uf = $request->valor_uf;
+            $publicacion->valor_cl = $request->valor_cl;
+            
+            $publicacion->save();
+            Flash::info('Se ha editado una publicacion exitosamente!!');
+            return redirect()->route('admin.publicaciones.index');
     }
 
     /**

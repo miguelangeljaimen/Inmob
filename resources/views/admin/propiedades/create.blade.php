@@ -78,7 +78,7 @@
                 
 </div>
 
-{!!Form::submit('crear publicacion', ['class'=>'btn btn-danger'])!!}
+{!!Form::submit('Guardar', ['class'=>'btn btn-danger'])!!}
  {!! Form::close() !!}
 
 </div>

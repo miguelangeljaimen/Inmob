@@ -33,9 +33,10 @@ class AuthController extends Controller
     public function __construct()
     {
         $this->middleware('guest', ['except' => 'getLogout']);
+        
     }
-
-        protected $redirectPath = '/admin/clientes';
+        
+        protected $redirectPath = '/';
         //protected $loginPath = 'auth/login';
 
     /**
@@ -69,7 +70,7 @@ class AuthController extends Controller
         return User::create([
             'nombres_user' => $data['name'],
             'apellidos_user' => $data['apellidos'],
-           'rol_user' => 'admin',
+           'rol_user' => 'usuario',
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);

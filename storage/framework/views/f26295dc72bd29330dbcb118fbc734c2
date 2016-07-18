@@ -86,7 +86,7 @@
                 
 </div>
 
-<?php echo Form::submit('crear publicacion', ['class'=>'btn btn-danger']); ?>
+<?php echo Form::submit('Guardar', ['class'=>'btn btn-danger']); ?>
 
  <?php echo Form::close(); ?>
 

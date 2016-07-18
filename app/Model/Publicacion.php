@@ -21,6 +21,9 @@ class Publicacion extends Model
 
     protected $hidden = ['id'];
 
+public function getPropiedad(){
 
+         return $this->belongsTo('App\Model\Propiedad', 'id_propiedad', 'id_propiedad');
+    }
 
 }

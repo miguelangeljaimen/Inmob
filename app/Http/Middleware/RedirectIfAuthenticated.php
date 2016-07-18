@@ -35,6 +35,7 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next)
     {
         if ($this->auth->check() ) {
+            dd($auth);
             return redirect()->route('admin.propiedades.index');
         }
 

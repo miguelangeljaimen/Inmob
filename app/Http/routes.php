@@ -85,12 +85,19 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'administracion']],f
 		'as' => 'admin.publicaciones.create'
 		]);
 
+		Route::get('sitio', [
+    'as' => 'sitio',
+    'uses' => 'HomeController@admin'
+    ]);
+
 	});
 
 
 // Admin routes...
 
 
+
+// Usuario routes...
 
 
 Route::get('prueba','HomeController@inde');

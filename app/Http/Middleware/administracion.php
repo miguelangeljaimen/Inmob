@@ -24,7 +24,8 @@ class administracion
     public function handle($request, Closure $next)
     {
         if($this->auth->user()->rol_user != 'admin'){
-            Flash::info('usuario '.$this->auth->user()->nombre_user.' sin privilegios!!');
+            //dd($this->auth->user());
+            Flash::info('Bienvenido '.$this->auth->user()->nombres_user.'');
             return redirect('/');
         }
         return $next($request);
