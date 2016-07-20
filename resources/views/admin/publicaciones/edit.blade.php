@@ -33,6 +33,12 @@
                                 <label>Valor UF</label>
                                 {!! Form::text('valor_uf', $publicacion->valor_uf, ['class'=> 'form-control']) !!}
                             </div>
+
+                            <div class="form-group">
+                            <label>Visibilidad</label>
+                            {!! Form::select('estado', array('publico' => 'Publica', 'privado' => 'Privada'), '', array('class'=>'form-control','id'=>'tipo', 'placeholder' =>'Visibilidad' )) !!}    
+                            </div>
+
                             <div>                            
                                 {!! Form::submit('Guardar',['class' => 'btn btn-primary']) !!}
                             </div>

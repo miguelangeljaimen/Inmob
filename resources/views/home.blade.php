@@ -9,6 +9,8 @@
  
 @section('content')
     <!-- Page Content -->
+
+
     <div class="container">
 
         <div class="row">
@@ -41,6 +43,9 @@
                                     <img class="slide-image" src="http://placehold.it/800x300" alt="">
                                 </div>
                             @foreach($publicaciones as $publicacion)
+
+
+
                             	<div class="item">
                                    <img src="{{'/imagenes/propiedades/'.$publicacion->getPropiedad->getImagen->nombre}}" alt="">
                                 </div>
@@ -58,7 +63,7 @@
 
                 </div> --}}
 
-                @foreach($publicaciones as $publicacion)
+@foreach($publicaciones as $publicacion)
 
 
 
@@ -187,10 +192,38 @@
                             @endif
 
                                                         <div class="ratings">
-                                <p class="pull-right">postulaciones</p>
+
+    
+@if (!Auth::guest())
+        {!! Form::open(['route' => 'postular', 'method' => 'POST','files'=> true, 'class' => 'form']) !!}
+        {!! Form::hidden('id_usuario', Auth::user()->id_user) !!} 
+        {!! Form::hidden('id_propiedad', $publicacion->getPropiedad->id_propiedad) !!} 
+{{--dd(count($publicacion->getPropiedad->getPostulacionUser(Auth::user()->id_user)))--}}
+    @if($publicacion->getPropiedad->getPostulacionUser(Auth::user()->id_user) != "null")
+        <p class="pull-right">{!!Form::submit('Enviada', ['class'=>'btn btn-xs btn-alert'])!!}</p>
+    @else
+        <p class="pull-right">{!!Form::submit('Postular', ['class'=>'btn btn-xs btn-success'])!!}</p>
+    @endif
+        {!! Form::close() !!}
+
                                 <p>
-                                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true">
+                                        @if(isset($publicacion->getPropiedad->getPostulacion))
+                                            @foreach($publicacion->getPropiedad->getPostulacion as $postulacion)
+                                            
+                                            @endforeach
+                                            {{count($publicacion->getPropiedad->getPostulacion).'postulaciones'}}
+                                           
+                                           @if($postulacion->id_usuario == Auth::user()->id_user)
+                                                
+                                           @endif
+                                           
+                                        @else
+                                        0
+                                        @endif
+                                    </span>
                                 </p>
+@endif
                             </div>
                         </div>
                     </div>
@@ -199,7 +232,7 @@
                  
 
 
-                @endforeach 
+@endforeach 
 
                
 

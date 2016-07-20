@@ -21,6 +21,13 @@ Route::get('home', [
     'uses' => 'HomeController@index'
 ]);
 
+Route::post('postular', [
+    'as' => 'postular',
+    'uses' => 'user\UserController@postulacion'
+]);
+
+
+
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', ['as' =>'auth/login', 'uses' => 'Auth\AuthController@postLogin']);
@@ -33,24 +40,27 @@ Route::post('auth/register', ['as' => 'auth/register', 'uses' => 'Auth\AuthContr
 // Select routes...
 //Route::get('provincias/{id}', 'HomeController@getProvincias');
 //Route::get('comunas/{id}', 'HomeController@getComunas');
-Route::get('provincias/{id}', 'Admin\PropiedadController@getProvincias');
-Route::get('comunas/{id}', 'Admin\PropiedadController@getComunas');
+Route::get('provincias/{id}', 'admin\PropiedadController@getProvincias');
+Route::get('comunas/{id}', 'admin\PropiedadController@getComunas');
+
 
 
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'administracion']],function(){
 
-		Route::get('/', 'admin\AdminController@index');
 
 		Route::get('propiedades/provincias/{id}', 'admin\PropiedadController@getProvincias');
+		
 		Route::get('propiedades/comunas/{id}', 'admin\PropiedadController@getComunas');
 
 		Route::resource('clientes', 'admin\ClienteController');
+		
 		Route::get('clientes/{id}/destroy',
 		[
 		'uses'=>'admin\ClienteController@destroy', 
 		'as' => 'admin.clientes.destroy'
 		]);
+		
 		Route::get('clientes/{id}/info',
 		[
 		'uses'=>'admin\ClienteController@info', 
@@ -58,6 +68,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'administracion']],f
 		]);
 
 		Route::resource('propiedades', 'admin\PropiedadController');
+		
 		Route::get('propiedades/{id}/destroy',
 		[
 		'uses'=>'admin\PropiedadController@destroy', 
@@ -85,12 +96,17 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'administracion']],f
 		'as' => 'admin.publicaciones.create'
 		]);
 
-		Route::get('sitio', [
-    'as' => 'sitio',
-    'uses' => 'HomeController@admin'
-    ]);
+		Route::get('usuarios', [
+    	'as' => 'usuarios',
+    	'uses' => 'Auth\AuthController@index'
+		]);
+		
+		
 
-	});
+	}
+
+
+	);
 
 
 // Admin routes...
@@ -100,6 +116,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'administracion']],f
 // Usuario routes...
 
 
-Route::get('prueba','HomeController@inde');
+
 
 //Route::resource('propiedades/cantidades','PropiedadesController@index');

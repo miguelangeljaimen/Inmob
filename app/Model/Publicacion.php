@@ -15,7 +15,8 @@ class Publicacion extends Model
     'titulo', 
     'descripcion', 
     'valor_uf', 
-    'valor_cl', 
+    'valor_cl',
+    'estado', 
 
     ];
 

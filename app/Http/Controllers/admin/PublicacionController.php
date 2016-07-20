@@ -12,6 +12,7 @@ use Laracasts\Flash\Flash;
 use App\Model\Propiedad;
 use App\Model\Publicacion;
 use App\Model\Imagen;
+use App\Model\Movimiento;
 
 class PublicacionController extends Controller
 {
@@ -63,26 +64,32 @@ class PublicacionController extends Controller
             $publicacion->descripcion = $request->descripcion;
             $publicacion->valor_uf = $request->valor_uf;
             $publicacion->valor_cl = $request->valor_cl;
+            $publicacion->estado = $request->estado;
             
             $publicacion->save();
 
-            $propiedad = Propiedad::find($request->propiedad);
-            //$propiedad->id_cliente = $request->cliente; 
-            $propiedad->estado = 'publico';
             
-            $propiedad->save();
-
-            Flash::info('Se ha publicado una nueva propiedad exitosamente!!');
 
 
                 $file = $request->file('imagen');
                 $nombre = 'inmob_'. time(). '.'. $file->getClientOriginalExtension();
                 $path = public_path().'/imagenes/propiedades/';
                 $file->move($path,$nombre);
+                
                 $imagen = new Imagen;
                 $imagen->nombre = $nombre;
                 $imagen->id_propiedad = $request->propiedad;
                 $imagen->save();
+
+                $movimiento = new Movimiento;
+                $movimiento->id_propiedad = $request->propiedad;
+                $movimiento->id_usuario = $request->user;
+                $movimiento->id_administrador = $request->user;
+                $movimiento->movimiento = 'publicacion';
+                $movimiento->nota = '';
+                $movimiento->save();
+
+            Flash::info('Se ha publicado una nueva propiedad exitosamente!!');
 
 
             return redirect()->route('admin.publicaciones.index');
@@ -132,6 +139,7 @@ class PublicacionController extends Controller
             $publicacion->descripcion = $request->descripcion;
             $publicacion->valor_uf = $request->valor_uf;
             $publicacion->valor_cl = $request->valor_cl;
+            $publicacion->estado = $request->estado;
             
             $publicacion->save();
             Flash::info('Se ha editado una publicacion exitosamente!!');
@@ -150,16 +158,13 @@ class PublicacionController extends Controller
         $propiedad = $publicacion->id_propiedad;
         //dd($propiedad);
          $propiedad = Propiedad::find($propiedad);
-            //$propiedad->id_cliente = $request->cliente; 
-        //dd($propiedad);
-        $propiedad->estado = 'privado';
+
+        
         $publicacion->delete();    
-        $propiedad->save();
         
         Flash::info('la publiacion fué eliminado exitosamente!!');
         
-        //$propiedad->id_cliente = $request->cliente;
-        //Flash::success('El cliente'.$cliente->nombre.'ha sido borrado exitosamente!');
+
         return redirect()->route('admin.publicaciones.index');
     }
 

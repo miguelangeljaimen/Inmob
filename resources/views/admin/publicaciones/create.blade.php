@@ -54,6 +54,10 @@
                             {!! Form::text('valor_uf', '', ['class'=> 'form-control, col-md-4']) !!}
                         </div>
 
+                        <div class="form-group">
+                            <label>Visibilidad</label>
+                            {!! Form::select('estado', array('publico' => 'Publica', 'privado' => 'Privada'), '', array('class'=>'form-control','id'=>'tipo', 'placeholder' =>'Visibilidad' )) !!}    
+                        </div>
 
                         <div class="form-group">
                             {!!Form::label('imagen', 'Imagen')!!}

@@ -29,6 +29,8 @@ class CreatePublicacionesTable extends Migration
 
             $table->integer('valor_uf')->nullable();
             $table->integer('valor_cl')->nullable();
+
+            $table->enum('estado',['publico', 'privado']);
             
             $table->timestamps();
         });

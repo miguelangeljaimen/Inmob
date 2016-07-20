@@ -32,7 +32,7 @@
 			    	<li><a href="{{route('admin.clientes.index')}}">Clientes  <span class="label label-success label-as-badge">{{$numeros['clientes']}}</span></a></li>
 			    	<li><a href="{{route('admin.propiedades.index')}}">Propiedades <span class="label label-success label-as-badge">{{$numeros['propiedades']}}</a></span></li>
 			    	<li><a href="{{route('admin.publicaciones.index')}}">Publicaciones <span class="label label-success label-as-badge">{{$numeros['publicaciones']}}</span></a></li>
-					<li><a href="{{route('sitio')}}">Sitio</a></li>
+					<li><a href="/">Sitio</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 				    @if (Auth::guest())

@@ -64,6 +64,17 @@ class AuthController extends Controller
      * @param  array  $data
      * @return User
      */
+    
+
+    public function index()
+    {   
+        dd('llego');
+        $numeros = $this->numeros();
+        $usuarios = User::orderBy('id_user', 'desc')->paginate(10);
+        return view('admin.usuarios.index')->with('numeros',$numeros)->with('usuarios', $usuarios);
+    }    
+
+
     protected function create(array $data)
     {
         
@@ -74,6 +85,16 @@ class AuthController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+    public function destroy($id)
+    {
+        $user = User::find($id);
+        $user->delete();
+        Flash::info('El usuario '.$user->nombres_user.' fué eliminado exitosamente!!');
+        //Flash::success('El cliente'.$cliente->nombre.'ha sido borrado exitosamente!');
+        return redirect()->route('admin.usuarios.index');
+      //return view('admin.clientes.destroy');
     }
 
 }

@@ -9,6 +9,8 @@
  
 <?php $__env->startSection('content'); ?>
     <!-- Page Content -->
+
+
     <div class="container">
 
         <div class="row">
@@ -41,6 +43,9 @@
                                     <img class="slide-image" src="http://placehold.it/800x300" alt="">
                                 </div>
                             <?php foreach($publicaciones as $publicacion): ?>
+
+
+
                             	<div class="item">
                                    <img src="<?php echo e('/imagenes/propiedades/'.$publicacion->getPropiedad->getImagen->nombre); ?>" alt="">
                                 </div>
@@ -58,7 +63,7 @@
 
                 </div> */ ?>
 
-                <?php foreach($publicaciones as $publicacion): ?>
+<?php foreach($publicaciones as $publicacion): ?>
 
 
 
@@ -187,10 +192,41 @@
                             <?php endif; ?>
 
                                                         <div class="ratings">
-                                <p class="pull-right">postulaciones</p>
+
+    
+<?php if(!Auth::guest()): ?>
+        <?php echo Form::open(['route' => 'postular', 'method' => 'POST','files'=> true, 'class' => 'form']); ?>
+
+        <?php echo Form::hidden('id_usuario', Auth::user()->id_user); ?> 
+        <?php echo Form::hidden('id_propiedad', $publicacion->getPropiedad->id_propiedad); ?> 
+<?php /*dd(count($publicacion->getPropiedad->getPostulacionUser(Auth::user()->id_user)))*/ ?>
+    <?php if($publicacion->getPropiedad->getPostulacionUser(Auth::user()->id_user) != "null"): ?>
+        <p class="pull-right"><?php echo Form::submit('Enviada', ['class'=>'btn btn-xs btn-alert']); ?></p>
+    <?php else: ?>
+        <p class="pull-right"><?php echo Form::submit('Postular', ['class'=>'btn btn-xs btn-success']); ?></p>
+    <?php endif; ?>
+        <?php echo Form::close(); ?>
+
+
                                 <p>
-                                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true">
+                                        <?php if(isset($publicacion->getPropiedad->getPostulacion)): ?>
+                                            <?php foreach($publicacion->getPropiedad->getPostulacion as $postulacion): ?>
+                                            
+                                            <?php endforeach; ?>
+                                            <?php echo e(count($publicacion->getPropiedad->getPostulacion).'postulaciones'); ?>
+
+                                           
+                                           <?php if($postulacion->id_usuario == Auth::user()->id_user): ?>
+                                                
+                                           <?php endif; ?>
+                                           
+                                        <?php else: ?>
+                                        0
+                                        <?php endif; ?>
+                                    </span>
                                 </p>
+<?php endif; ?>
                             </div>
                         </div>
                     </div>
@@ -199,7 +235,7 @@
                  
 
 
-                <?php endforeach; ?> 
+<?php endforeach; ?> 
 
                
 

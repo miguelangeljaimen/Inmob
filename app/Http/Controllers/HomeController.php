@@ -10,6 +10,7 @@ use App\Model\Region;
 use App\Model\Comuna;
 use App\Model\Provincia;
 use App\Model\Publicacion;
+use App\Model\Postulacion;
 use App\Model\Imagen;
 use App\Model\Propiedad;
 
@@ -17,7 +18,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-    	 $regiones = Region::lists('nombre', 'id');//aqui ingrso en primer lugar lo que quiero que muestre el select y luego el valur o lo que quiero que sea enviado por el select.
+    	$regiones = Region::lists('nombre', 'id');//aqui ingrso en primer lugar lo que quiero que muestre el select y luego el valur o lo que quiero que sea enviado por el select.
         $provincias = Provincia::lists('nombre', 'id');
         $publicaciones = Publicacion::orderBy('id', 'desc')->paginate(5);
         $comunas = Comuna::lists('nombre', 'id');
@@ -79,4 +80,6 @@ class HomeController extends Controller
         return \View::make('welcome', compact('regiones', 'provincias', 'comunas'));   //linea tutoial (funciona)
         
     }
+
+ 
 }

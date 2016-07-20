@@ -36,12 +36,12 @@
                                           
                                             <td>
                                             
-                                               @if($propiedad->estado == "privado")
+                                               @if(!isset($propiedad->getPublicacion))
                                                <a href="{{route('admin.publicaciones.create',  $propiedad->id_propiedad)}}" title="publicar" class="btn btn-Warning btn-sm"><span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span></a>
                                                @else
                                                   <a href="" title="ver publicación" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>  
                                                @endif
-                                              
+                                      
                                             
                                                 <a href="{{route('admin.propiedades.edit', $propiedad->id_propiedad)}}"  title="Editar" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a> 
 

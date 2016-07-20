@@ -66,6 +66,19 @@ class Propiedad extends Model
      return $this->belongsTo('App\Model\Imagen', 'id_propiedad', 'id_propiedad');   
     }
 
+    public function getPostulacion(){
+
+        return $this->hasMany('App\Model\Postulacion', 'id_propiedad', 'id_propiedad');  
+
+    }
+
+
+    public function getPostulacionUser($id){
+
+        return Postulacion::where('id_usuario','=',$id);
+
+    }
+
     public function scopeBuscar($query, $id){
         if($id !=''){
           return $query->where('id_cliente', $id);
