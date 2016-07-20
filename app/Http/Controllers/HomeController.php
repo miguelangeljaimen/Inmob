@@ -20,7 +20,7 @@ class HomeController extends Controller
     {
     	$regiones = Region::lists('nombre', 'id');//aqui ingrso en primer lugar lo que quiero que muestre el select y luego el valur o lo que quiero que sea enviado por el select.
         $provincias = Provincia::lists('nombre', 'id');
-        $publicaciones = Publicacion::orderBy('id', 'desc')->paginate(5);
+        $publicaciones = Publicacion::orderBy('id', 'asc')->paginate(5);
         $comunas = Comuna::lists('nombre', 'id');
         $numeros = $this->numeros();
 

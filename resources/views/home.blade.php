@@ -61,7 +61,7 @@
                         </div>
                     </div> 
 
-                </div> --}}
+                </div> fin carrusel --}}
 
 @foreach($publicaciones as $publicacion)
 
@@ -198,30 +198,28 @@
         {!! Form::open(['route' => 'postular', 'method' => 'POST','files'=> true, 'class' => 'form']) !!}
         {!! Form::hidden('id_usuario', Auth::user()->id_user) !!} 
         {!! Form::hidden('id_propiedad', $publicacion->getPropiedad->id_propiedad) !!} 
-{{--dd(count($publicacion->getPropiedad->getPostulacionUser(Auth::user()->id_user)))--}}
-    @if($publicacion->getPropiedad->getPostulacionUser(Auth::user()->id_user) != "null")
-        <p class="pull-right">{!!Form::submit('Enviada', ['class'=>'btn btn-xs btn-alert'])!!}</p>
-    @else
+
+
+ <?php $bingo = 0 ?>
+@foreach($publicacion->getPropiedad->getPostulaciones as $postulacion)
+
+ 
+
+@if($postulacion->id_usuario == Auth::user()->id_user)
+<?php $bingo = 1 ?>
+@endif
+
+  @endforeach
+  
+@if($bingo==1)
+        <p class="pull-right"><a href="#" class="btn btn-xs btn-warning">Enviada</a></p>
+ @else
         <p class="pull-right">{!!Form::submit('Postular', ['class'=>'btn btn-xs btn-success'])!!}</p>
-    @endif
+@endif    
         {!! Form::close() !!}
 
                                 <p>
-                                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true">
-                                        @if(isset($publicacion->getPropiedad->getPostulacion))
-                                            @foreach($publicacion->getPropiedad->getPostulacion as $postulacion)
-                                            
-                                            @endforeach
-                                            {{count($publicacion->getPropiedad->getPostulacion).'postulaciones'}}
-                                           
-                                           @if($postulacion->id_usuario == Auth::user()->id_user)
-                                                
-                                           @endif
-                                           
-                                        @else
-                                        0
-                                        @endif
-                                    </span>
+                                {{count($publicacion->getPropiedad->getPostulaciones)}} postulantes.
                                 </p>
 @endif
                             </div>

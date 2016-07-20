@@ -61,7 +61,7 @@
                         </div>
                     </div> 
 
-                </div> */ ?>
+                </div> fin carrusel */ ?>
 
 <?php foreach($publicaciones as $publicacion): ?>
 
@@ -199,32 +199,29 @@
 
         <?php echo Form::hidden('id_usuario', Auth::user()->id_user); ?> 
         <?php echo Form::hidden('id_propiedad', $publicacion->getPropiedad->id_propiedad); ?> 
-<?php /*dd(count($publicacion->getPropiedad->getPostulacionUser(Auth::user()->id_user)))*/ ?>
-    <?php if($publicacion->getPropiedad->getPostulacionUser(Auth::user()->id_user) != "null"): ?>
-        <p class="pull-right"><?php echo Form::submit('Enviada', ['class'=>'btn btn-xs btn-alert']); ?></p>
-    <?php else: ?>
+
+
+ <?php $bingo = 0 ?>
+<?php foreach($publicacion->getPropiedad->getPostulaciones as $postulacion): ?>
+
+ 
+
+<?php if($postulacion->id_usuario == Auth::user()->id_user): ?>
+<?php $bingo = 1 ?>
+<?php endif; ?>
+
+  <?php endforeach; ?>
+  
+<?php if($bingo==1): ?>
+        <p class="pull-right"><a href="#" class="btn btn-xs btn-warning">Enviada</a></p>
+ <?php else: ?>
         <p class="pull-right"><?php echo Form::submit('Postular', ['class'=>'btn btn-xs btn-success']); ?></p>
-    <?php endif; ?>
+<?php endif; ?>    
         <?php echo Form::close(); ?>
 
 
                                 <p>
-                                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true">
-                                        <?php if(isset($publicacion->getPropiedad->getPostulacion)): ?>
-                                            <?php foreach($publicacion->getPropiedad->getPostulacion as $postulacion): ?>
-                                            
-                                            <?php endforeach; ?>
-                                            <?php echo e(count($publicacion->getPropiedad->getPostulacion).'postulaciones'); ?>
-
-                                           
-                                           <?php if($postulacion->id_usuario == Auth::user()->id_user): ?>
-                                                
-                                           <?php endif; ?>
-                                           
-                                        <?php else: ?>
-                                        0
-                                        <?php endif; ?>
-                                    </span>
+                                <?php echo e(count($publicacion->getPropiedad->getPostulaciones)); ?> postulantes.
                                 </p>
 <?php endif; ?>
                             </div>

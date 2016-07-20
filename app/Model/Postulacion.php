@@ -3,6 +3,7 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use App\User;
 
 class Postulacion extends Model
 {
@@ -25,6 +26,9 @@ class Postulacion extends Model
 	public function getUsuario()
     {
 //        return $this->hasMany('App\Model\Propiedad', 'id_cliente', 'id_cliente');
-        return $this->belongsTo('App\User', 'id_user', 'id_user');
+        return $this->belongsTo('App\User', 'id_usuario', 'id_user');
+    }
+    public function buscar($id){
+        return Postulacion::where('id_usuario','= 5');
     }
 }
